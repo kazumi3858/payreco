@@ -1,0 +1,26 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - '**/vendor/**/*'
+    - config/**/*
+    - config.ru
+    - db/migrate/*
+    - db/schema.rb
+    - tmp/**/*
+    - bin/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/ClassLength:
+  Exclude:
+    - test/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
