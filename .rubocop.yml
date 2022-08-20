@@ -17,6 +17,9 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
+Style/NumericLiterals:
+  Enabled: false
+
 Metrics/ClassLength:
   Exclude:
     - test/**/*
