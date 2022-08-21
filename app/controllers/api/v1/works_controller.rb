@@ -40,7 +40,8 @@ module Api
       end
 
       def work_params
-        params.require(:work).permit(:date, :starting_time, :ending_time, :break_time, :working_hours, :pay_amount, :memo, :company_id)
+        params.require(:work).permit(:starting_time, :ending_time, :break_time, :working_hours, :pay_amount, :memo,
+                                     :user_id, :company_id)
       end
     end
   end
