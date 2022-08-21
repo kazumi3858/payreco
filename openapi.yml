@@ -1,0 +1,471 @@
+openapi: 3.1.0
+x-stoplight:
+  id: g27g8q3gjuf7m
+info:
+  title: payreco
+  version: '1.0'
+  description: API for payreco app
+  summary: 'OpenAPI documentation '
+  contact:
+    name: payreco
+    url: 'http://localhost:3001/contact'
+  license:
+    name: MIT
+    url: 'http://localhost:3001/license'
+  termsOfService: 'http://localhost:3001/terms'
+servers:
+  - url: 'http://localhost:3000/api/v1'
+paths:
+  '/users/{user_id}':
+    parameters:
+      - schema:
+          type: string
+        name: user_id
+        in: path
+        required: true
+        description: User information
+    get:
+      summary: Get a user
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples: {}
+      operationId: get-users-userId
+      description: Get a user
+      tags:
+        - Users
+      parameters: []
+    patch:
+      summary: Update a use
+      operationId: patch-users-userId
+      responses:
+        '200':
+          description: ok
+        '422':
+          description: unprocessable entity
+      description: Update a user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            examples:
+              example-1:
+                value:
+                  id: string
+                  uid: string
+                  name: string
+                  created_at: '2019-08-24T14:15:22Z'
+                  updated_at: '2019-08-24T14:15:22Z'
+        description: Patch user properties to update.
+    delete:
+      summary: Delete a user
+      operationId: delete-users-userId
+      responses:
+        '204':
+          description: no content
+          content:
+            application/json:
+              schema:
+                type: string
+              examples:
+                deleted user:
+                  value: string
+      description: Delete a user
+  /users:
+    post:
+      summary: Create a user
+      operationId: post-user
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+              examples: {}
+        '422':
+          description: unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            examples: {}
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+        description: Post the necessary fields for the API to create a new user.
+      description: Create a user
+      tags:
+        - Users
+      parameters: []
+    parameters: []
+  '/works/{work_id}':
+    parameters:
+      - schema:
+          type: string
+        name: work_id
+        in: path
+        required: true
+        description: Work information
+    get:
+      summary: Get a work
+      tags:
+        - Works
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Work'
+      operationId: get-works-work_id
+      description: Get a work
+    delete:
+      summary: Delete a work
+      operationId: delete-works-work_id
+      responses:
+        '204':
+          description: no content
+          content:
+            application/json:
+              schema:
+                type: string
+              examples:
+                deleted work:
+                  value: string
+      description: Delete a work
+    patch:
+      summary: Update a work
+      operationId: patch-works-work_id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Work'
+            examples:
+              example-1:
+                value:
+                  id: adghj
+                  date: '2019-08-24'
+                  starting_time: '2019-08-24T14:15:22Z'
+                  ending_time: '2019-08-24T18:15:22Z'
+                  break_time: 60
+                  working_hours: 3
+                  pay_amount: 30
+                  memo: string
+                  user_id: addfdgsg
+                  company_id: asdfgfgf
+                  created_at: '2019-08-24T14:15:22Z'
+                  updated_at: '2019-08-24T14:15:22Z'
+      description: Update a work
+      responses:
+        '200':
+          description: ok
+        '422':
+          description: unprocessable entity
+  /works:
+    get:
+      summary: Get works
+      tags:
+        - Works
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Work'
+              examples:
+                example-1:
+                  value:
+                    - id: sfdfgfg
+                      date: '2019-08-24'
+                      starting_time: '2019-08-24T14:15:22Z'
+                      ending_time: '2019-08-24T18:15:22Z'
+                      break_time: 60
+                      working_hours: 3
+                      pay_amount: 30
+                      memo: string
+                      user_id: dfgsgsf
+                      company_id: afddgfg
+                      created_at: '2019-08-24T14:15:22Z'
+                      updated_at: '2019-08-24T14:15:22Z'
+      operationId: get-works
+      description: Get works
+    post:
+      summary: Create a work
+      operationId: post-works
+      responses:
+        '201':
+          description: created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Work'
+            examples:
+              example-1:
+                value:
+                  id: sfddgggf
+                  date: '2019-08-24'
+                  starting_time: '2019-08-24T14:15:22Z'
+                  ending_time: '2019-08-24T18:15:22Z'
+                  break_time: 60
+                  working_hours: 3
+                  pay_amount: 0
+                  memo: string
+                  user_id: sgfgffh
+                  company_id: dshfhfd
+                  created_at: '2019-08-24T14:15:22Z'
+                  updated_at: '2019-08-24T14:15:22Z'
+      description: Create a work
+  /companies:
+    get:
+      summary: Get companies
+      tags:
+        - Companies
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Company'
+              examples: {}
+      operationId: get-companies
+      description: Get companies information
+    post:
+      summary: Create a company
+      operationId: post-companies
+      responses:
+        '201':
+          description: created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+            examples:
+              example-1:
+                value:
+                  id: dfggfgf
+                  name: string
+                  hourly_wage_system: true
+                  wage: 0
+                  currency: string
+                  user_id: fdsggsfg
+                  created_at: '2019-08-24T14:15:22Z'
+                  updated_at: '2019-08-24T14:15:22Z'
+      description: Create a company
+  '/companies/{company_id}':
+    parameters:
+      - schema:
+          type: string
+        name: company_id
+        in: path
+        required: true
+        description: Company information
+    get:
+      summary: Get a company
+      tags:
+        - Companies
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+      operationId: get-companies-company_id
+      description: Get a company
+    patch:
+      summary: Update  a company
+      operationId: patch-companies-company_id
+      responses:
+        '200':
+          description: ok
+        '422':
+          description: unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+      description: Update a company
+    delete:
+      summary: Delete a company
+      operationId: delete-companies-company_id
+      responses:
+        '204':
+          description: no content
+          content:
+            application/json:
+              schema:
+                type: string
+              examples:
+                deleted company:
+                  value: string
+      description: Delete a company
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: User model
+      examples:
+        - id: adffgg
+          uid: JYBfksjIBSDOjs
+          name: 田中
+          created_at: '2019-08-24T14:15:22Z'
+          updated_at: '2019-08-24T14:15:22Z'
+      x-tags:
+        - Users
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the given user.
+          readOnly: true
+        uid:
+          type: string
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          description: The date that the user was created.
+          readOnly: true
+      required:
+        - id
+        - uid
+        - name
+    Company:
+      title: Company
+      x-stoplight:
+        id: p20ujg3asx194
+      type: object
+      description: Company model
+      x-tags:
+        - Cpmpanies
+      examples:
+        - id: ggsgrtt
+          name: 株式会社〇〇
+          hourly: true
+          wage: 15
+          currency: USD
+          user_id: dggghhs
+          created_at: '2019-08-24T14:15:22Z'
+          updated_at: '2019-08-24T14:15:22Z'
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+        hourly_wage_system:
+          type: boolean
+        wage:
+          type: integer
+        currency:
+          type: string
+        user_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - id
+        - name
+        - hourly_wage_system
+        - currency
+        - user_id
+    Work:
+      title: Work
+      x-stoplight:
+        id: hum3nwximkuo4
+      type: object
+      description: Work model
+      examples:
+        - id: asdfhh
+          date: '2019-08-24'
+          starting_time: '2019-08-24T14:15:22Z'
+          ending_time: '2019-08-24T18:15:22Z'
+          break_time: 60
+          working_hours: 3
+          pay_amoount: 0
+          memo: string
+          user_id: addffg
+          company_id: fgghjj
+          created_at: '2019-08-24T14:15:22Z'
+          updated_at: '2019-08-24T14:15:22Z'
+      x-tags:
+        - Works
+      properties:
+        id:
+          type: string
+          readOnly: true
+        starting_time:
+          type: string
+          format: date-time
+        ending_time:
+          type: string
+          format: date-time
+        break_time:
+          type: integer
+        working_hours:
+          type: number
+          format: float
+        pay_amount:
+          type: number
+        memo:
+          type: string
+        user_id:
+          type: string
+        company_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - id
+        - working_hours
+        - pay_amount
+        - user_id
+        - company_id
+  securitySchemes:
+    firebase:
+      type: oauth2
+tags:
+  - name: Companies
+    description: Company information
+  - name: Users
+    description: User information
+  - name: Works
+    description: Work information
