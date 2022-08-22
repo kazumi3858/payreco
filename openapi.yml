@@ -294,6 +294,22 @@ paths:
                 deleted company:
                   value: string
       description: Delete a company
+  /exchange-rates:
+    get:
+      summary: Get exchange rates
+      tags:
+        - Exchange rates
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExchangeRate'
+      operationId: get-exchange-rates
+      description: Get exchange rates
 components:
   schemas:
     User:
@@ -433,10 +449,40 @@ components:
         - pay_amount
         - user_id
         - company_id
+    ExchangeRate:
+      title: ExchangeRate
+      x-stoplight:
+        id: 9a4ilxb1olzzx
+      type: object
+      properties:
+        id:
+          type: number
+        year_and_month:
+          type: number
+        exchange_rate_list:
+          type: object
+      examples:
+        - id: 1
+          year_and_month: 202208
+          exchange_rate_list:
+            円: 1
+            米ドル: 0.007416
+            ユーロ: 0.007282
+            英ポンド: 0.006149
+            インドルピー: 0.5887
+            豪ドル: 0.01075
+            カナダドル: 0.009609
+            ランド: 0.124
+            NZドル: 0.01187
+            SGドル: 0.01022
+            人民元: 0.05024
+            スイスフラン: 0.007126
   securitySchemes: {}
 tags:
   - name: Companies
     description: Company information
+  - name: Exchange rates
+    description: Exchange rate information
   - name: Users
     description: User information
   - name: Works
