@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+Work.destroy_all
+Company.destroy_all
 User.destroy_all
 
 User.create!(
@@ -13,8 +15,6 @@ User.create!(
   name: '山本 もくひょうアリ子',
   target_amount: 200000
 )
-
-Company.destroy_all
 
 User.all.each do |user|
   user.companies.create!(
@@ -30,8 +30,6 @@ User.all.each do |user|
     currency_type: '円'
   )
 end
-
-Work.destroy_all
 
 Company.all.each do |company|
   if company.hourly_wage_system
@@ -56,3 +54,14 @@ Company.all.each do |company|
     )
   end
 end
+
+ExchangeRate.delete_all
+
+ExchangeRate.create!(
+  year_and_month: 202208,
+  # rubocop:disable Lint/SymbolConversion
+  exchange_rate_list: { '円': 1, '米ドル': 0.007416, 'ユーロ': 0.007282, '英ポンド': 0.006149,
+                        'インドルピー': 0.5887, '豪ドル': 0.01075, 'カナダドル': 0.009609, 'ランド': 0.1240,
+                        'NZドル': 0.01187, 'SGドル': 0.01022, '人民元': 0.05024, 'スイスフラン': 0.007126 }
+  # rubocop:enable Lint/SymbolConversion
+)
