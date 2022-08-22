@@ -83,21 +83,19 @@ paths:
       responses:
         '201':
           description: created
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-              examples: {}
-        '422':
-          description: unprocessable entity
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
-            examples: {}
+            examples:
+              example-1:
+                value:
+                  id: adffgg
+                  uid: JYBfksjIBSDOjs
+                  name: 田中
+                  created_at: '2019-08-24T14:15:22Z'
+                  updated_at: '2019-08-24T14:15:22Z'
           application/xml:
             schema:
               type: array
@@ -480,10 +478,10 @@ components:
   securitySchemes: {}
 tags:
   - name: Companies
-    description: Company information
+    description: Company model
   - name: Exchange rates
-    description: Exchange rate information
+    description: Exchange rate model
   - name: Users
-    description: User information
+    description: User model
   - name: Works
-    description: Work information
+    description: Work model
