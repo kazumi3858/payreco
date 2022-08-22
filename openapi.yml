@@ -117,19 +117,6 @@ paths:
         in: path
         required: true
         description: Work information
-    get:
-      summary: Get a work
-      tags:
-        - Works
-      responses:
-        '200':
-          description: ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Work'
-      operationId: get-works-work_id
-      description: Get a work
     delete:
       summary: Delete a work
       operationId: delete-works-work_id
@@ -162,7 +149,7 @@ paths:
                   break_time: 60
                   working_hours: 3
                   pay_amount: 30
-                  memo: string
+                  memo: メモ
                   user_id: addfdgsg
                   company_id: asdfgfgf
                   created_at: '2019-08-24T14:15:22Z'
@@ -197,7 +184,7 @@ paths:
                       break_time: 60
                       working_hours: 3
                       pay_amount: 30
-                      memo: string
+                      memo: メモ
                       user_id: dfgsgsf
                       company_id: afddgfg
                       created_at: '2019-08-24T14:15:22Z'
@@ -263,10 +250,10 @@ paths:
               example-1:
                 value:
                   id: dfggfgf
-                  name: string
+                  name: 株式会社××
                   hourly_wage_system: true
                   wage: 0
-                  currency: string
+                  currency: USD
                   user_id: fdsggsfg
                   created_at: '2019-08-24T14:15:22Z'
                   updated_at: '2019-08-24T14:15:22Z'
@@ -279,19 +266,6 @@ paths:
         in: path
         required: true
         description: Company information
-    get:
-      summary: Get a company
-      tags:
-        - Companies
-      responses:
-        '200':
-          description: ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Company'
-      operationId: get-companies-company_id
-      description: Get a company
     patch:
       summary: Update  a company
       operationId: patch-companies-company_id
@@ -415,7 +389,7 @@ components:
           break_time: 60
           working_hours: 3
           pay_amoount: 0
-          memo: string
+          memo: メモ
           user_id: addffg
           company_id: fgghjj
           created_at: '2019-08-24T14:15:22Z'
@@ -459,9 +433,7 @@ components:
         - pay_amount
         - user_id
         - company_id
-  securitySchemes:
-    firebase:
-      type: oauth2
+  securitySchemes: {}
 tags:
   - name: Companies
     description: Company information
