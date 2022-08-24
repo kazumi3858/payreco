@@ -4,7 +4,7 @@ module Api
   module V1
     class WorksController < ApplicationController
       def index
-        @works = Work.all
+        @works = Work.joins(:company).select("works.*, companies.*")
 
         render json: @works
       end
