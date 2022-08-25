@@ -149,7 +149,12 @@ paths:
                   pay_amount: 30
                   memo: メモ
                   user_id: addfdgsg
-                  company_id: asdfgfgf
+                  company_id: fadajf
+                  company:
+                    name: 株式会社〇〇
+                    hourly_wage_system: true
+                    wage_amount: 10
+                    currency_type: USD
                   created_at: '2019-08-24T14:15:22Z'
                   updated_at: '2019-08-24T14:15:22Z'
       description: Update a work
@@ -250,8 +255,8 @@ paths:
                   id: dfggfgf
                   name: 株式会社××
                   hourly_wage_system: true
-                  wage: 0
-                  currency: USD
+                  wage_amount: 0
+                  currency_type: USD
                   user_id: fdsggsfg
                   created_at: '2019-08-24T14:15:22Z'
                   updated_at: '2019-08-24T14:15:22Z'
@@ -374,8 +379,8 @@ components:
         - id: ggsgrtt
           name: 株式会社〇〇
           hourly: true
-          wage: 15
-          currency: USD
+          wage_amount: 15
+          currency_type: USD
           user_id: dggghhs
           created_at: '2019-08-24T14:15:22Z'
           updated_at: '2019-08-24T14:15:22Z'
@@ -387,9 +392,9 @@ components:
           type: string
         hourly_wage_system:
           type: boolean
-        wage:
+        wage_amount:
           type: integer
-        currency:
+        currency_type:
           type: string
         user_id:
           type: string
@@ -405,7 +410,7 @@ components:
         - id
         - name
         - hourly_wage_system
-        - currency
+        - currency_type
         - user_id
     Work:
       title: Work
@@ -414,16 +419,20 @@ components:
       type: object
       description: Work model
       examples:
-        - id: asdfhh
-          date: '2019-08-24'
+        - id: gffhsgh
           starting_time: '2019-08-24T14:15:22Z'
           ending_time: '2019-08-24T18:15:22Z'
           break_time: 60
           working_hours: 3
-          pay_amoount: 0
+          pay_amount: 30
           memo: メモ
-          user_id: addffg
-          company_id: fgghjj
+          user_id: ggsfafrg
+          company_id: fdggfgf
+          company:
+            name: 株式会社〇〇
+            hourly_wage_system: true
+            wage_amount: 10
+            currency_type: USD
           created_at: '2019-08-24T14:15:22Z'
           updated_at: '2019-08-24T14:15:22Z'
       x-tags:
@@ -451,6 +460,17 @@ components:
           type: string
         company_id:
           type: string
+        company:
+          type: object
+          properties:
+            name:
+              type: string
+            hourly_wage_system:
+              type: boolean
+            wage_amount:
+              type: number
+            currency_type:
+              type: string
         created_at:
           type: string
           format: date-time
@@ -464,7 +484,6 @@ components:
         - working_hours
         - pay_amount
         - user_id
-        - company_id
     ExchangeRate:
       title: ExchangeRate
       x-stoplight:
