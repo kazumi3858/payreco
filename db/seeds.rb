@@ -34,6 +34,7 @@ end
 Company.all.each do |company|
   if company.hourly_wage_system
     company.works.create!(
+      date: Date.new(2022, 8, 17),
       starting_time: Time.zone.local(2022, 8, 17, 10, 0),
       ending_time: Time.zone.local(2022, 8, 17, 17, 0),
       break_time: 60,
@@ -44,6 +45,7 @@ Company.all.each do |company|
     )
   else
     company.works.create!(
+      date: Date.new(2022, 8, 9),
       starting_time: nil,
       ending_time: nil,
       break_time: nil,

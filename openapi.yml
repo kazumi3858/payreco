@@ -33,7 +33,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-              examples: {}
+              examples:
+                example-1:
+                  value:
+                    id: adffgg
+                    uid: JYBfksjIBSDOjs
+                    name: 田中
+                    target_amount: 200000
+                    created_at: '2019-08-24T14:15:22Z'
+                    updated_at: '2019-08-24T14:15:22Z'
       operationId: get-users-userId
       description: Get a user
       tags:
@@ -56,9 +64,10 @@ paths:
             examples:
               example-1:
                 value:
-                  id: string
-                  uid: string
-                  name: string
+                  id: fsfsgsg
+                  uid: gsgsgsgs
+                  name: 田中
+                  target_amount: 200000
                   created_at: '2019-08-24T14:15:22Z'
                   updated_at: '2019-08-24T14:15:22Z'
         description: Patch user properties to update.
@@ -94,6 +103,7 @@ paths:
                   id: adffgg
                   uid: JYBfksjIBSDOjs
                   name: 田中
+                  target_amount: 200000
                   created_at: '2019-08-24T14:15:22Z'
                   updated_at: '2019-08-24T14:15:22Z'
           application/xml:
@@ -341,6 +351,7 @@ components:
         - id: adffgg
           uid: JYBfksjIBSDOjs
           name: 田中
+          target_amount: 200000
           created_at: '2019-08-24T14:15:22Z'
           updated_at: '2019-08-24T14:15:22Z'
       x-tags:
@@ -354,6 +365,8 @@ components:
           type: string
         name:
           type: string
+        target_amount:
+          type: number
         created_at:
           type: string
           format: date-time
@@ -420,6 +433,7 @@ components:
       description: Work model
       examples:
         - id: gffhsgh
+          date: '2019-08-24'
           starting_time: '2019-08-24T14:15:22Z'
           ending_time: '2019-08-24T18:15:22Z'
           break_time: 60
@@ -441,6 +455,9 @@ components:
         id:
           type: string
           readOnly: true
+        date:
+          type: string
+          format: date
         starting_time:
           type: string
           format: date-time
@@ -481,6 +498,7 @@ components:
           readOnly: true
       required:
         - id
+        - date
         - working_hours
         - pay_amount
         - user_id
