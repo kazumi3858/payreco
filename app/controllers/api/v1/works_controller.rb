@@ -4,8 +4,7 @@ module Api
   module V1
     class WorksController < ApplicationController
       def index
-        @works = Work.includes(:company).as_json(include: { company: { only: %i[name hourly_wage_system wage_amount
-                                                                                currency_type] } })
+        @works = Work.includes(:company).as_json(include: :company)
         render json: @works
       end
 
