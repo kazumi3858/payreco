@@ -150,23 +150,27 @@ paths:
             examples:
               example-1:
                 value:
-                  id: adghj
+                  id: gdgdsgs
                   date: '2019-08-24'
                   starting_time: '2019-08-24T14:15:22Z'
                   ending_time: '2019-08-24T18:15:22Z'
                   break_time: 60
                   working_hours: 3
-                  pay_amount: 30
+                  pay_amount: 45
                   memo: メモ
-                  user_id: addfdgsg
-                  company_id: fadajf
-                  company:
-                    name: 株式会社〇〇
-                    hourly_wage_system: true
-                    wage_amount: 10
-                    currency_type: USD
+                  user_id: fsgskdj
+                  company_id: ggsgrtt
                   created_at: '2019-08-24T14:15:22Z'
                   updated_at: '2019-08-24T14:15:22Z'
+                  company:
+                    id: ggsgrtt
+                    name: 株式会社〇〇
+                    hourly_wage_system: true
+                    wage_amount: 15
+                    currency_type: USD
+                    user_id: dggghhs
+                    created_at: '2019-08-24T14:15:22Z'
+                    updated_at: '2019-08-24T14:15:22Z'
       description: Update a work
       responses:
         '200':
@@ -190,18 +194,27 @@ paths:
               examples:
                 example-1:
                   value:
-                    - id: sfdfgfg
+                    - id: gdgdsgs
                       date: '2019-08-24'
                       starting_time: '2019-08-24T14:15:22Z'
                       ending_time: '2019-08-24T18:15:22Z'
                       break_time: 60
                       working_hours: 3
-                      pay_amount: 30
+                      pay_amount: 45
                       memo: メモ
-                      user_id: dfgsgsf
-                      company_id: afddgfg
+                      user_id: fsgskdj
+                      company_id: ggsgrtt
                       created_at: '2019-08-24T14:15:22Z'
                       updated_at: '2019-08-24T14:15:22Z'
+                      company:
+                        id: ggsgrtt
+                        name: 株式会社〇〇
+                        hourly_wage_system: true
+                        wage_amount: 15
+                        currency_type: USD
+                        user_id: dggghhs
+                        created_at: '2019-08-24T14:15:22Z'
+                        updated_at: '2019-08-24T14:15:22Z'
       operationId: get-works
       description: Get works
     post:
@@ -218,18 +231,27 @@ paths:
             examples:
               example-1:
                 value:
-                  id: sfddgggf
+                  id: gdgdsgs
                   date: '2019-08-24'
                   starting_time: '2019-08-24T14:15:22Z'
                   ending_time: '2019-08-24T18:15:22Z'
                   break_time: 60
                   working_hours: 3
-                  pay_amount: 0
-                  memo: string
-                  user_id: sgfgffh
-                  company_id: dshfhfd
+                  pay_amount: 45
+                  memo: メモ
+                  user_id: fsgskdj
+                  company_id: ggsgrtt
                   created_at: '2019-08-24T14:15:22Z'
                   updated_at: '2019-08-24T14:15:22Z'
+                  company:
+                    id: ggsgrtt
+                    name: 株式会社〇〇
+                    hourly_wage_system: true
+                    wage_amount: 15
+                    currency_type: USD
+                    user_id: dggghhs
+                    created_at: '2019-08-24T14:15:22Z'
+                    updated_at: '2019-08-24T14:15:22Z'
       description: Create a work
   /companies:
     get:
@@ -391,7 +413,7 @@ components:
       examples:
         - id: ggsgrtt
           name: 株式会社〇〇
-          hourly: true
+          hourly_wage_system: true
           wage_amount: 15
           currency_type: USD
           user_id: dggghhs
@@ -432,23 +454,27 @@ components:
       type: object
       description: Work model
       examples:
-        - id: gffhsgh
+        - id: gdgdsgs
           date: '2019-08-24'
           starting_time: '2019-08-24T14:15:22Z'
           ending_time: '2019-08-24T18:15:22Z'
           break_time: 60
           working_hours: 3
-          pay_amount: 30
+          pay_amount: 45
           memo: メモ
-          user_id: ggsfafrg
-          company_id: fdggfgf
-          company:
-            name: 株式会社〇〇
-            hourly_wage_system: true
-            wage_amount: 10
-            currency_type: USD
+          user_id: fsgskdj
+          company_id: ggsgrtt
           created_at: '2019-08-24T14:15:22Z'
           updated_at: '2019-08-24T14:15:22Z'
+          company:
+            id: ggsgrtt
+            name: 株式会社〇〇
+            hourly_wage_system: true
+            wage_amount: 15
+            currency_type: USD
+            user_id: dggghhs
+            created_at: '2019-08-24T14:15:22Z'
+            updated_at: '2019-08-24T14:15:22Z'
       x-tags:
         - Works
       properties:
@@ -477,17 +503,6 @@ components:
           type: string
         company_id:
           type: string
-        company:
-          type: object
-          properties:
-            name:
-              type: string
-            hourly_wage_system:
-              type: boolean
-            wage_amount:
-              type: number
-            currency_type:
-              type: string
         created_at:
           type: string
           format: date-time
@@ -496,12 +511,15 @@ components:
           type: string
           format: date-time
           readOnly: true
+        company:
+          $ref: '#/components/schemas/Company'
       required:
         - id
         - date
         - working_hours
         - pay_amount
         - user_id
+        - company
     ExchangeRate:
       title: ExchangeRate
       x-stoplight:
