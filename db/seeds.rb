@@ -16,21 +16,28 @@ User.create!(
   target_amount: 200000
 )
 
-User.all.each do |user|
-  user.companies.create!(
-    name: 'ジキュウCompany US',
-    hourly_wage_system: true,
-    wage_amount: 10,
-    currency_type: '米ドル'
-  )
-  user.companies.create!(
-    name: '株式会社ニッキュウ',
-    hourly_wage_system: false,
-    wage_amount: nil,
-    currency_type: '円'
-  )
-end
+User.first.companies.create!(
+  name: 'ジキュウワーク',
+  hourly_wage_system: true,
+  wage_amount: 10,
+  currency_type: '米ドル'
+)
 
+User.first.companies.create!(
+  name: '株式会社ニッキュウ',
+  hourly_wage_system: false,
+  wage_amount: nil,
+  currency_type: '円'
+)
+
+User.first.companies.create!(
+  name: 'Abc company',
+  hourly_wage_system: true,
+  wage_amount: 10,
+  currency_type: 'カナダドル'
+)
+
+# rubocop:disable Metrics/BlockLength
 Company.all.each do |company|
   if company.hourly_wage_system
     company.works.create!(
@@ -40,7 +47,18 @@ Company.all.each do |company|
       break_time: 60,
       working_hours: 6.0,
       pay_amount: 60,
-      memo: 'メモです',
+      memo: '打ち合わせあり',
+      user_id: company.user_id
+    )
+
+    company.works.create!(
+      date: Date.new(2022, 9, 20),
+      starting_time: Time.zone.local(2022, 9, 20, 6, 0),
+      ending_time: Time.zone.local(2022, 9, 20, 12, 0),
+      break_time: 45,
+      working_hours: 5.25,
+      pay_amount: 52,
+      memo: 'ミーティング有り',
       user_id: company.user_id
     )
   else
@@ -56,6 +74,7 @@ Company.all.each do |company|
     )
   end
 end
+# rubocop:enable Metrics/BlockLength
 
 ExchangeRate.delete_all
 
