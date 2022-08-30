@@ -162,15 +162,6 @@ paths:
                   company_id: ggsgrtt
                   created_at: '2019-08-24T14:15:22Z'
                   updated_at: '2019-08-24T14:15:22Z'
-                  company:
-                    id: ggsgrtt
-                    name: 株式会社〇〇
-                    hourly_wage_system: true
-                    wage_amount: 15
-                    currency_type: USD
-                    user_id: dggghhs
-                    created_at: '2019-08-24T14:15:22Z'
-                    updated_at: '2019-08-24T14:15:22Z'
       description: Update a work
       responses:
         '200':
@@ -189,6 +180,20 @@ paths:
             application/json:
               schema:
                 type: array
+                x-examples:
+                  example-1:
+                    - id: gdgdsgs
+                      date: '2019-08-24'
+                      starting_time: '2019-08-24T14:15:22Z'
+                      ending_time: '2019-08-24T18:15:22Z'
+                      break_time: 60
+                      working_hours: 3
+                      pay_amount: 45
+                      memo: メモ
+                      user_id: fsgskdj
+                      company_id: ggsgrtt
+                      created_at: '2019-08-24T14:15:22Z'
+                      updated_at: '2019-08-24T14:15:22Z'
                 items:
                   $ref: '#/components/schemas/Work'
               examples:
@@ -206,15 +211,6 @@ paths:
                       company_id: ggsgrtt
                       created_at: '2019-08-24T14:15:22Z'
                       updated_at: '2019-08-24T14:15:22Z'
-                      company:
-                        id: ggsgrtt
-                        name: 株式会社〇〇
-                        hourly_wage_system: true
-                        wage_amount: 15
-                        currency_type: USD
-                        user_id: dggghhs
-                        created_at: '2019-08-24T14:15:22Z'
-                        updated_at: '2019-08-24T14:15:22Z'
       operationId: get-works
       description: Get works
     post:
@@ -227,7 +223,21 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Work'
+              $ref: '#/components/schemas/WorkParams'
+              x-examples:
+                example-1:
+                  id: gdgdsgs
+                  date: '2019-08-24'
+                  starting_time: '2019-08-24T14:15:22Z'
+                  ending_time: '2019-08-24T18:15:22Z'
+                  break_time: 60
+                  working_hours: 3
+                  pay_amount: 45
+                  memo: メモ
+                  user_id: fsgskdj
+                  company_id: ggsgrtt
+                  created_at: '2019-08-24T14:15:22Z'
+                  updated_at: '2019-08-24T14:15:22Z'
             examples:
               example-1:
                 value:
@@ -243,15 +253,6 @@ paths:
                   company_id: ggsgrtt
                   created_at: '2019-08-24T14:15:22Z'
                   updated_at: '2019-08-24T14:15:22Z'
-                  company:
-                    id: ggsgrtt
-                    name: 株式会社〇〇
-                    hourly_wage_system: true
-                    wage_amount: 15
-                    currency_type: USD
-                    user_id: dggghhs
-                    created_at: '2019-08-24T14:15:22Z'
-                    updated_at: '2019-08-24T14:15:22Z'
       description: Create a work
   /companies:
     get:
@@ -280,7 +281,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Company'
+              $ref: '#/components/schemas/CompanyParams'
             examples:
               example-1:
                 value:
@@ -381,7 +382,6 @@ components:
       properties:
         id:
           type: string
-          description: Unique identifier for the given user.
           readOnly: true
         uid:
           type: string
@@ -398,12 +398,13 @@ components:
         updated_at:
           type: string
           format: date-time
-          description: The date that the user was created.
           readOnly: true
       required:
         - id
         - uid
         - name
+        - created_at
+        - updated_at
     Company:
       title: Company
       x-stoplight:
@@ -430,7 +431,7 @@ components:
         hourly_wage_system:
           type: boolean
         wage_amount:
-          type: integer
+          type: number
         currency_type:
           type: string
         user_id:
@@ -445,10 +446,13 @@ components:
           format: date-time
           readOnly: true
       required:
+        - id
         - name
         - hourly_wage_system
         - currency_type
         - user_id
+        - created_at
+        - updated_at
     Work:
       title: Work
       x-stoplight:
@@ -468,15 +472,6 @@ components:
           company_id: ggsgrtt
           created_at: '2019-08-24T14:15:22Z'
           updated_at: '2019-08-24T14:15:22Z'
-          company:
-            id: ggsgrtt
-            name: 株式会社〇〇
-            hourly_wage_system: true
-            wage_amount: 15
-            currency_type: USD
-            user_id: dggghhs
-            created_at: '2019-08-24T14:15:22Z'
-            updated_at: '2019-08-24T14:15:22Z'
       x-tags:
         - Works
       properties:
@@ -498,7 +493,7 @@ components:
           format: date-time
         break_time:
           type:
-            - integer
+            - number
             - 'null'
         working_hours:
           type: number
@@ -521,26 +516,20 @@ components:
           type: string
           format: date-time
           readOnly: true
-        company:
-          $ref: '#/components/schemas/Company'
       required:
+        - id
         - date
         - working_hours
         - pay_amount
         - user_id
         - company_id
+        - created_at
+        - updated_at
     ExchangeRate:
       title: ExchangeRate
       x-stoplight:
         id: 9a4ilxb1olzzx
       type: object
-      properties:
-        id:
-          type: number
-        year_and_month:
-          type: number
-        exchange_rate_list:
-          type: object
       examples:
         - id: 1
           year_and_month: 202208
@@ -557,6 +546,105 @@ components:
             SGドル: 0.01022
             人民元: 0.05024
             スイスフラン: 0.007126
+      properties:
+        id:
+          type: number
+          readOnly: true
+        year_and_month:
+          type: number
+        exchange_rate_list:
+          type: object
+      required:
+        - id
+        - year_and_month
+        - exchange_rate_list
+    WorkParams:
+      type: object
+      x-examples:
+        example-1:
+          date: '2019-08-24'
+          starting_time: '2019-08-24T14:15:22Z'
+          ending_time: '2019-08-24T18:15:22Z'
+          break_time: 60
+          working_hours: 3
+          pay_amount: 45
+          memo: メモ
+          user_id: fsgskdj
+          company_id: ggsgrtt
+      properties:
+        date:
+          type: string
+          format: date
+        starting_time:
+          type:
+            - string
+            - 'null'
+          format: date-time
+        ending_time:
+          type:
+            - string
+            - 'null'
+          format: date-time
+        break_time:
+          type:
+            - number
+            - 'null'
+        working_hours:
+          type: number
+          format: float
+        pay_amount:
+          type: number
+        memo:
+          type: string
+        user_id:
+          type: string
+        company_id:
+          type: string
+      required:
+        - date
+        - working_hours
+        - pay_amount
+        - company_id
+      examples:
+        - date: '2019-08-24'
+          starting_time: '2019-08-24T14:15:22Z'
+          ending_time: '2019-08-24T18:15:22Z'
+          break_time: 60
+          working_hours: 3
+          pay_amount: 5000
+          memo: メモ
+          user_id: fakjsfjd
+          company_id: fskdfjd
+    CompanyParams:
+      type: object
+      x-examples:
+        example-1:
+          name: 株式会社〇〇
+          hourly_wage_system: true
+          wage_amount: 15
+          currency_type: USD
+          user_id: dggghhs
+      properties:
+        name:
+          type: string
+        hourly_wage_system:
+          type: boolean
+        wage_amount:
+          type: number
+        currency_type:
+          type: string
+        user_id:
+          type: string
+      required:
+        - name
+        - hourly_wage_system
+        - currency_type
+      examples:
+        - name: 株式会社〇〇
+          hourly_wage_system: true
+          wage_amount: 0
+          currency_type: USD
+          user_id: fdsggss
   securitySchemes: {}
 tags:
   - name: Companies
