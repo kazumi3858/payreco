@@ -529,7 +529,6 @@ components:
         - pay_amount
         - user_id
         - company_id
-        - company
     ExchangeRate:
       title: ExchangeRate
       x-stoplight:
