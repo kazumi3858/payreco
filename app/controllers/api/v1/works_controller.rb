@@ -4,7 +4,7 @@ module Api
   module V1
     class WorksController < ApplicationController
       def index
-        @works = Work.includes(:company).as_json(include: :company)
+        @works = Work.all.order(:date, :starting_time, :created_at)
         render json: @works
       end
 

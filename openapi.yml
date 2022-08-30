@@ -146,7 +146,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Work'
+              $ref: '#/components/schemas/WorkParams'
             examples:
               example-1:
                 value:
@@ -314,7 +314,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Company'
+              $ref: '#/components/schemas/CompanyParams'
       description: Update a company
     delete:
       summary: Delete a company
@@ -571,6 +571,16 @@ components:
           memo: メモ
           user_id: fsgskdj
           company_id: ggsgrtt
+      examples:
+        - date: '2019-08-24'
+          starting_time: '2019-08-24T14:15:22Z'
+          ending_time: '2019-08-24T18:15:22Z'
+          break_time: 60
+          working_hours: 3
+          pay_amount: 5000
+          memo: メモ
+          user_id: fakjsfjd
+          company_id: fskdfjd
       properties:
         date:
           type: string
@@ -604,17 +614,6 @@ components:
         - date
         - working_hours
         - pay_amount
-        - company_id
-      examples:
-        - date: '2019-08-24'
-          starting_time: '2019-08-24T14:15:22Z'
-          ending_time: '2019-08-24T18:15:22Z'
-          break_time: 60
-          working_hours: 3
-          pay_amount: 5000
-          memo: メモ
-          user_id: fakjsfjd
-          company_id: fskdfjd
     CompanyParams:
       type: object
       x-examples:
@@ -624,6 +623,13 @@ components:
           wage_amount: 15
           currency_type: USD
           user_id: dggghhs
+      examples:
+        - id: fjskgga
+          name: 株式会社〇〇
+          hourly_wage_system: true
+          wage_amount: 0
+          currency_type: USD
+          user_id: fdsggss
       properties:
         name:
           type: string
@@ -639,12 +645,21 @@ components:
         - name
         - hourly_wage_system
         - currency_type
+    UserParams:
+      type: object
+      x-examples:
+        example-1:
+          id: adffgg
+          uid: JYBfksjIBSDOjs
+          name: 田中
+          target_amount: 200000
+          created_at: '2019-08-24T14:15:22Z'
+          updated_at: '2019-08-24T14:15:22Z'
+      properties:
+        target_amount:
+          type: number
       examples:
-        - name: 株式会社〇〇
-          hourly_wage_system: true
-          wage_amount: 0
-          currency_type: USD
-          user_id: fdsggss
+        - target_amount: 200000
   securitySchemes: {}
 tags:
   - name: Companies
