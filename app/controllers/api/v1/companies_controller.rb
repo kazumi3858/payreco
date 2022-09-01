@@ -4,7 +4,7 @@ module Api
   module V1
     class CompaniesController < ApplicationController
       def index
-        @companies = Company.all.order(updated_at: :DESC)
+        @companies = Company.where(:deleted_at: nil).order(updated_at: :DESC)
 
         render json: @companies
       end
@@ -30,7 +30,8 @@ module Api
 
       def destroy
         set_company
-        @company.destroy
+        @company.deleted_at = Time.now
+        save!
       end
 
       private

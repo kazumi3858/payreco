@@ -268,7 +268,18 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Company'
-              examples: {}
+              examples:
+                example-1:
+                  value:
+                    - id: ggsgrtt
+                      name: 株式会社〇〇
+                      hourly_wage_system: true
+                      wage_amount: 15
+                      currency_type: USD
+                      user_id: dggghhs
+                      deleted_at: null
+                      created_at: '2019-08-24T14:15:22Z'
+                      updated_at: '2019-08-24T14:15:22Z'
       operationId: get-companies
       description: Get companies information
     post:
@@ -362,6 +373,8 @@ paths:
                         SGドル: 0.01022
                         人民元: 0.05024
                         スイスフラン: 0.007126
+                      created_at: '2019-08-24T14:15:22Z'
+                      updated_at: '2019-08-24T14:15:22Z'
       operationId: get-exchange-rates
       description: Get exchange rates
 components:
@@ -650,6 +663,7 @@ components:
         - pay_amount
         - memo
         - company_id
+      title: WorkParams
     CompanyParams:
       type: object
       x-examples:
@@ -681,6 +695,7 @@ components:
         - hourly_wage_system
         - wage_amount
         - currency_type
+      title: CompanyParams
     UserParams:
       type: object
       x-examples:
@@ -700,6 +715,7 @@ components:
             - 'null'
       required:
         - target_amount
+      title: UserParams
   securitySchemes: {}
 tags:
   - name: Companies

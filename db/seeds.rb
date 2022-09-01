@@ -20,21 +20,24 @@ User.first.companies.create!(
   name: 'ジキュウワーク',
   hourly_wage_system: true,
   wage_amount: 10,
-  currency_type: '米ドル'
+  currency_type: '米ドル',
+  deleted_at: nil
 )
 
 User.first.companies.create!(
   name: '株式会社ニッキュウ',
   hourly_wage_system: false,
   wage_amount: nil,
-  currency_type: '円'
+  currency_type: '円',
+  deleted_at: nil
 )
 
 User.first.companies.create!(
   name: 'Abc company',
   hourly_wage_system: true,
   wage_amount: 10,
-  currency_type: 'カナダドル'
+  currency_type: 'カナダドル',
+  deleted_at: nil
 )
 
 # rubocop:disable Metrics/BlockLength
@@ -48,8 +51,7 @@ Company.all.each do |company|
       working_hours: 6.0,
       pay_amount: 60,
       memo: '打ち合わせあり',
-      user_id: company.user_id,
-      deleted_at: nil
+      user_id: company.user_id
     )
 
     company.works.create!(
@@ -60,8 +62,7 @@ Company.all.each do |company|
       working_hours: 5.25,
       pay_amount: 52,
       memo: 'ミーティング有り',
-      user_id: company.user_id,
-      deleted_at: nil
+      user_id: company.user_id
     )
   else
     company.works.create!(
@@ -72,8 +73,7 @@ Company.all.each do |company|
       working_hours: 8.0,
       pay_amount: 15000,
       memo: nil,
-      user_id: company.user_id,
-      deleted_at: nil
+      user_id: company.user_id
     )
   end
 end
