@@ -2,5 +2,5 @@
 
 class Company < ApplicationRecord
   belongs_to :owner, class_name: 'User', foreign_key: :user_id, inverse_of: :companies
-  has_many :works
+  has_many :works # rubocop:disable Rails/HasManyOrHasOneDependent
 end
