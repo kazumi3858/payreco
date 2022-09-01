@@ -48,7 +48,8 @@ Company.all.each do |company|
       working_hours: 6.0,
       pay_amount: 60,
       memo: '打ち合わせあり',
-      user_id: company.user_id
+      user_id: company.user_id,
+      deleted_at: nil
     )
 
     company.works.create!(
@@ -59,7 +60,8 @@ Company.all.each do |company|
       working_hours: 5.25,
       pay_amount: 52,
       memo: 'ミーティング有り',
-      user_id: company.user_id
+      user_id: company.user_id,
+      deleted_at: nil
     )
   else
     company.works.create!(
@@ -70,7 +72,8 @@ Company.all.each do |company|
       working_hours: 8.0,
       pay_amount: 15000,
       memo: nil,
-      user_id: company.user_id
+      user_id: company.user_id,
+      deleted_at: nil
     )
   end
 end
