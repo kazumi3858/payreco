@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_01_033816) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_01_040333) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_033816) do
   create_table "companies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", limit: 30, null: false
     t.boolean "hourly_wage_system", null: false
-    t.decimal "wage_amount", precision: 7, scale: 2
+    t.float "wage_amount"
     t.string "currency_type", null: false
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_033816) do
     t.datetime "ending_time"
     t.integer "break_time"
     t.float "working_hours", default: 0.0, null: false
-    t.decimal "pay_amount", precision: 8, scale: 2, null: false
+    t.float "pay_amount", null: false
     t.string "memo", limit: 50
     t.uuid "user_id", null: false
     t.uuid "company_id", null: false
