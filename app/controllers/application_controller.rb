@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::API
   # include ActionController::HttpAuthentication::Token::ControllerMethods
   # before_action :authenticate
+  before_action :current_user
 
   # class AuthenticationError < StandardError; end
   # rescue_from AuthenticationError, with: :not_authenticated
@@ -21,6 +22,10 @@ class ApplicationController < ActionController::API
   #     @current_user = User.create!(uid: token['uid'], name: token['decoded_token'][:payload]['name'])
   #   end
   # end
+
+  def current_user
+    @current_user = User.first
+  end
 
   # private
 

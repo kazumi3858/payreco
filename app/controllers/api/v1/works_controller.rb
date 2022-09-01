@@ -9,7 +9,7 @@ module Api
       end
 
       def create
-        @work = Work.new(work_params)
+        @work = @current_user.works.new(work_params)
 
         if @work.save
           render json: @work, status: :created, location: api_v1_work_url(@work)

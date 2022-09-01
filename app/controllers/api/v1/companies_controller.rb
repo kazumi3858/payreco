@@ -4,13 +4,13 @@ module Api
   module V1
     class CompaniesController < ApplicationController
       def index
-        @companies = Company.where(:deleted_at: nil).order(updated_at: :DESC)
+        @companies = Company.where(deleted_at: nil).order(updated_at: :DESC)
 
         render json: @companies
       end
 
       def create
-        @company = Company.new(company_params)
+        @company = @current_user.companies.new(company_params)
 
         if @company.save
           render json: @company, status: :created, location: api_v1_company_url(@company)
@@ -41,7 +41,7 @@ module Api
       end
 
       def company_params
-        params.require(:company).permit(:name, :hourly, :wage, :currency)
+        params.require(:company).permit(:name, :hourly_wage_system, :wage_amount, :currency_type)
       end
     end
   end

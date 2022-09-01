@@ -60,7 +60,7 @@ Company.all.each do |company|
       ending_time: Time.zone.local(2022, 9, 20, 12, 0),
       break_time: 45,
       working_hours: 5.25,
-      pay_amount: 52,
+      pay_amount: 52.5,
       memo: 'ミーティング有り',
       user_id: company.user_id
     )
