@@ -60,7 +60,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/UserParams'
             examples:
               example-1:
                 value:
@@ -390,7 +390,9 @@ components:
           type: string
           readOnly: true
         target_amount:
-          type: number
+          type:
+            - number
+            - 'null'
         created_at:
           type: string
           format: date-time
@@ -403,6 +405,7 @@ components:
         - id
         - uid
         - name
+        - target_amount
         - created_at
         - updated_at
     Company:
@@ -431,7 +434,9 @@ components:
         hourly_wage_system:
           type: boolean
         wage_amount:
-          type: number
+          type:
+            - number
+            - 'null'
         currency_type:
           type: string
         user_id:
@@ -449,6 +454,7 @@ components:
         - id
         - name
         - hourly_wage_system
+        - wage_amount
         - currency_type
         - user_id
         - created_at
@@ -501,7 +507,9 @@ components:
         pay_amount:
           type: number
         memo:
-          type: string
+          type:
+            - string
+            - 'null'
         user_id:
           type: string
           readOnly: true
@@ -519,8 +527,12 @@ components:
       required:
         - id
         - date
+        - starting_time
+        - ending_time
+        - break_time
         - working_hours
         - pay_amount
+        - memo
         - user_id
         - company_id
         - created_at
@@ -579,7 +591,6 @@ components:
           working_hours: 3
           pay_amount: 5000
           memo: メモ
-          user_id: fakjsfjd
           company_id: fskdfjd
       properties:
         date:
@@ -604,16 +615,22 @@ components:
           format: float
         pay_amount:
           type: number
+          format: float
         memo:
-          type: string
-        user_id:
-          type: string
+          type:
+            - string
+            - 'null'
         company_id:
           type: string
       required:
         - date
+        - starting_time
+        - ending_time
+        - break_time
         - working_hours
         - pay_amount
+        - memo
+        - company_id
     CompanyParams:
       type: object
       x-examples:
@@ -624,26 +641,26 @@ components:
           currency_type: USD
           user_id: dggghhs
       examples:
-        - id: fjskgga
-          name: 株式会社〇〇
+        - name: 株式会社〇〇
           hourly_wage_system: true
-          wage_amount: 0
+          wage_amount: 10
           currency_type: USD
-          user_id: fdsggss
       properties:
         name:
           type: string
         hourly_wage_system:
           type: boolean
         wage_amount:
-          type: number
+          type:
+            - number
+            - 'null'
+          format: float
         currency_type:
-          type: string
-        user_id:
           type: string
       required:
         - name
         - hourly_wage_system
+        - wage_amount
         - currency_type
     UserParams:
       type: object
@@ -655,11 +672,15 @@ components:
           target_amount: 200000
           created_at: '2019-08-24T14:15:22Z'
           updated_at: '2019-08-24T14:15:22Z'
-      properties:
-        target_amount:
-          type: number
       examples:
         - target_amount: 200000
+      properties:
+        target_amount:
+          type:
+            - number
+            - 'null'
+      required:
+        - target_amount
   securitySchemes: {}
 tags:
   - name: Companies
