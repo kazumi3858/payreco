@@ -31,7 +31,7 @@ module Api
       def destroy
         set_company
         @company.deleted_at = Time.now
-        save!
+        @company.save!
       end
 
       private
