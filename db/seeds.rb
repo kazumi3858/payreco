@@ -89,3 +89,12 @@ ExchangeRate.create!(
                         'NZドル': 0.01187, 'SGドル': 0.01022, '人民元': 0.05024, 'スイスフラン': 0.007126 }
   # rubocop:enable Lint/SymbolConversion
 )
+
+ExchangeRate.create!(
+  year_and_month: 202209,
+  # rubocop:disable Lint/SymbolConversion
+  exchange_rate_list: { '円': 1, '米ドル': 0.007616, 'ユーロ': 0.007482, '英ポンド': 0.006349,
+                        'インドルピー': 0.6087, '豪ドル': 0.01275, 'カナダドル': 0.009909, 'ランド': 0.1440,
+                        'NZドル': 0.01487, 'SGドル': 0.01122, '人民元': 0.05324, 'スイスフラン': 0.007426 }
+  # rubocop:enable Lint/SymbolConversion
+)
