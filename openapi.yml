@@ -92,25 +92,23 @@ paths:
       responses:
         '201':
           description: created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                example-1:
+                  value:
+                    id: adffgg
+                    uid: JYBfksjIBSDOjs
+                    name: 田中
+                    target_amount: null
+                    created_at: '2019-08-24T14:15:22Z'
+                    updated_at: '2019-08-24T14:15:22Z'
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-            examples:
-              example-1:
-                value:
-                  id: adffgg
-                  uid: JYBfksjIBSDOjs
-                  name: 田中
-                  target_amount: 200000
-                  created_at: '2019-08-24T14:15:22Z'
-                  updated_at: '2019-08-24T14:15:22Z'
-          application/xml:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/User'
+            schema: {}
         description: Post the necessary fields for the API to create a new user.
       description: Create a user
       tags:
