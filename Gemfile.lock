@@ -95,6 +95,7 @@ GEM
     irb (1.4.1)
       reline (>= 0.3.0)
     json (2.6.2)
+    jwt (2.5.0)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -224,6 +225,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   factory_bot_rails
+  jwt
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
