@@ -4,7 +4,7 @@ module Api
   module V1
     class CompaniesController < ApplicationController
       def index
-        @companies = Company.where(deleted_at: nil).order(updated_at: :DESC)
+        @companies = @current_user.companies.where(deleted_at: nil).order(updated_at: :DESC)
 
         render json: @companies
       end
@@ -37,7 +37,7 @@ module Api
       private
 
       def set_company
-        @company = Company.find(params[:id])
+        @company = @current_user.companies.find(params[:id])
       end
 
       def company_params

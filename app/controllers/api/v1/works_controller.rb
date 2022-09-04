@@ -4,7 +4,7 @@ module Api
   module V1
     class WorksController < ApplicationController
       def index
-        @works = Work.all.order(:date, :starting_time, :created_at)
+        @works = @current_user.works.order(:date, :starting_time, :created_at)
         render json: @works
       end
 
@@ -35,7 +35,7 @@ module Api
       private
 
       def set_work
-        @work = Work.find(params[:id])
+        @work = @current_user.works.find(params[:id])
       end
 
       def work_params
