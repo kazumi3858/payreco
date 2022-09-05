@@ -295,7 +295,7 @@ paths:
                 deleted company:
                   value: string
       description: Delete a company
-  /exchange-rates:
+  /exchange_rates:
     get:
       summary: Get exchange rates
       tags:
@@ -331,6 +331,7 @@ paths:
                       updated_at: '2019-08-24T14:15:22Z'
       operationId: get-exchange-rates
       description: Get exchange rates
+    parameters: []
   /authentication:
     delete:
       summary: Delete an authentication
