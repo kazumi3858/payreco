@@ -331,6 +331,14 @@ paths:
                       updated_at: '2019-08-24T14:15:22Z'
       operationId: get-exchange-rates
       description: Get exchange rates
+  /authentication:
+    delete:
+      summary: Delete an authentication
+      operationId: delete-authentication
+      responses:
+        '204':
+          description: No Content
+      description: Delete an authentication
 components:
   schemas:
     User:
