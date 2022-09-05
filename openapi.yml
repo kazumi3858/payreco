@@ -81,7 +81,7 @@ paths:
         name: work_id
         in: path
         required: true
-        description: Work information
+        description: Work id
     delete:
       summary: Delete a work
       operationId: delete-works-work_id
@@ -259,7 +259,7 @@ paths:
         name: company_id
         in: path
         required: true
-        description: Company information
+        description: Company id
     patch:
       summary: Update  a company
       operationId: patch-companies-company_id
@@ -332,7 +332,7 @@ paths:
       operationId: get-exchange-rates
       description: Get exchange rates
     parameters: []
-  /authentication:
+  '/authentications/{user_id}':
     delete:
       summary: Delete an authentication
       operationId: delete-authentication
@@ -340,6 +340,13 @@ paths:
         '204':
           description: No Content
       description: Delete an authentication
+    parameters:
+      - schema:
+          type: string
+        name: user_id
+        in: path
+        required: true
+        description: User id
 components:
   schemas:
     User:
