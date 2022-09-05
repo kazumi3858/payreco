@@ -4,9 +4,8 @@ module Api
   module V1
     class AuthenticationsController < ApplicationController
       def destroy
-        p 'before destory'
-        @current_user.destroy
-        p 'after destroy'
+        User.find(params[:id]).works.destroy_all
+        User.find(params[:id]).destroy
       end
     end
   end
