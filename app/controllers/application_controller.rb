@@ -15,11 +15,8 @@ class ApplicationController < ActionController::API
   end
 
   def current_user(token)
-    if User.find_by(uid: token['uid'])
-      @current_user ||= User.find_by(uid: token['uid'])
-    else
-      @current_user = User.create!(uid: token['uid'], name: token['decoded_token'][:payload]['name'])
-    end
+    @current_user = User.find_or_initialize_by(uid: token['uid'], name: token['decoded_token'][:payload]['name'])
+    @current_user.save!
   end
 
   private
