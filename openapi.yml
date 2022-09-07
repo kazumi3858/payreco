@@ -16,14 +16,8 @@ info:
 servers:
   - url: 'http://localhost:3000/api/v1'
 paths:
-  '/users/{user_id}':
-    parameters:
-      - schema:
-          type: string
-        name: user_id
-        in: path
-        required: true
-        description: User information
+  /user:
+    parameters: []
     get:
       summary: Get a user
       responses:
@@ -64,12 +58,7 @@ paths:
             examples:
               example-1:
                 value:
-                  id: fsfsgsg
-                  uid: gsgsgsgs
-                  name: 田中
                   target_amount: 200000
-                  created_at: '2019-08-24T14:15:22Z'
-                  updated_at: '2019-08-24T14:15:22Z'
         description: Patch user properties to update.
     delete:
       summary: Delete a user
@@ -85,38 +74,6 @@ paths:
                 deleted user:
                   value: string
       description: Delete a user
-  /users:
-    post:
-      summary: Create a user
-      operationId: post-user
-      responses:
-        '201':
-          description: created
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-            examples:
-              example-1:
-                value:
-                  id: adffgg
-                  uid: JYBfksjIBSDOjs
-                  name: 田中
-                  target_amount: 200000
-                  created_at: '2019-08-24T14:15:22Z'
-                  updated_at: '2019-08-24T14:15:22Z'
-          application/xml:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/User'
-        description: Post the necessary fields for the API to create a new user.
-      description: Create a user
-      tags:
-        - Users
-      parameters: []
-    parameters: []
   '/works/{work_id}':
     parameters:
       - schema:
@@ -124,7 +81,7 @@ paths:
         name: work_id
         in: path
         required: true
-        description: Work information
+        description: Work id
     delete:
       summary: Delete a work
       operationId: delete-works-work_id
@@ -150,7 +107,6 @@ paths:
             examples:
               example-1:
                 value:
-                  id: gdgdsgs
                   date: '2019-08-24'
                   starting_time: '2019-08-24T14:15:22Z'
                   ending_time: '2019-08-24T18:15:22Z'
@@ -160,8 +116,6 @@ paths:
                   memo: メモ
                   user_id: fsgskdj
                   company_id: ggsgrtt
-                  created_at: '2019-08-24T14:15:22Z'
-                  updated_at: '2019-08-24T14:15:22Z'
       description: Update a work
       responses:
         '200':
@@ -241,7 +195,6 @@ paths:
             examples:
               example-1:
                 value:
-                  id: gdgdsgs
                   date: '2019-08-24'
                   starting_time: '2019-08-24T14:15:22Z'
                   ending_time: '2019-08-24T18:15:22Z'
@@ -251,8 +204,6 @@ paths:
                   memo: メモ
                   user_id: fsgskdj
                   company_id: ggsgrtt
-                  created_at: '2019-08-24T14:15:22Z'
-                  updated_at: '2019-08-24T14:15:22Z'
       description: Create a work
   /companies:
     get:
@@ -296,14 +247,10 @@ paths:
             examples:
               example-1:
                 value:
-                  id: dfggfgf
                   name: 株式会社××
                   hourly_wage_system: true
                   wage_amount: 0
                   currency_type: USD
-                  user_id: fdsggsfg
-                  created_at: '2019-08-24T14:15:22Z'
-                  updated_at: '2019-08-24T14:15:22Z'
       description: Create a company
   '/companies/{company_id}':
     parameters:
@@ -312,7 +259,7 @@ paths:
         name: company_id
         in: path
         required: true
-        description: Company information
+        description: Company id
     patch:
       summary: Update  a company
       operationId: patch-companies-company_id
@@ -326,6 +273,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CompanyParams'
+            examples:
+              example-1:
+                value:
+                  name: 株式会社〇〇
+                  hourly_wage_system: true
+                  wage_amount: 10
+                  currency_type: USD
       description: Update a company
     delete:
       summary: Delete a company
@@ -341,7 +295,7 @@ paths:
                 deleted company:
                   value: string
       description: Delete a company
-  /exchange-rates:
+  /exchange_rates:
     get:
       summary: Get exchange rates
       tags:
@@ -377,6 +331,22 @@ paths:
                       updated_at: '2019-08-24T14:15:22Z'
       operationId: get-exchange-rates
       description: Get exchange rates
+    parameters: []
+  '/authentications/{user_id}':
+    delete:
+      summary: Delete an authentication
+      operationId: delete-authentication
+      responses:
+        '204':
+          description: No Content
+      description: Delete an authentication
+    parameters:
+      - schema:
+          type: string
+        name: user_id
+        in: path
+        required: true
+        description: User id
 components:
   schemas:
     User:
