@@ -72,6 +72,10 @@ Rails.application.configure do
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
   # config.hosts << 'payreco.vercel.app'
 >>>>>>> 7250cf6 (検証のためproduction.rbを修正した)
+=======
+  config.hosts << 'payreco.vercel.app'
+>>>>>>> b08fab9 (production.rbの設定にhostsを追加した。)
 end
