@@ -34,6 +34,7 @@ class ApplicationController < ActionController::API
   protected
 
   def cors_set_access_control_headers
+    p 'set headers!!!!'
     response.headers['Access-Control-Allow-Origin'] = 'https://payreco.fly.dev/'
     response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, PATCH, DELETE, OPTIONS, HEAD'
     response.headers['Access-Control-Allow-Headers'] =
