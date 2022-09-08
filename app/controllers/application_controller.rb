@@ -34,7 +34,7 @@ class ApplicationController < ActionController::API
   protected
 
   def cors_set_access_control_headers
-    response.headers['Access-Control-Allow-Origin'] = 'https://payreco.fly.dev/, http://localhost:3001'
+    response.headers['Access-Control-Allow-Origin'] = Rails.env.production? ? 'http://localhost:3001' : 'http://localhost:3001'
     response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, PATCH, DELETE, OPTIONS, HEAD'
     response.headers['Access-Control-Allow-Headers'] =
       'Origin, Content-Type, Accept, Authorization, Token, Auth-Token, X-XSRF-TOKEN'
