@@ -10,7 +10,7 @@ module Api
 
         cors_set_access_control_headers
         render json: {}
-        head :ok
+        head :not_found
       end
 
       protected
@@ -21,7 +21,6 @@ module Api
         response.headers['Access-Control-Allow-Headers'] =
           'Origin, X-Requested-With, Content-Type, Authorization, Accept'
         response.headers['Access-Control-Max-Age'] = '1728000'
-        response.headers['Access-Control-Allow-Credentials'] = true
       end
     end
   end
