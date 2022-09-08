@@ -9,8 +9,7 @@ module Api
         return unless request.method == 'OPTIONS'
 
         cors_set_access_control_headers
-        render json: {}
-        head :not_found
+        render json: {}, status: :no_content
       end
 
       protected
