@@ -28,7 +28,7 @@ class ApplicationController < ActionController::API
     return unless request.method == 'OPTIONS'
 
     cors_set_access_control_headers
-    render plain: ''
+    head :no_content
   end
 
   protected
@@ -37,7 +37,7 @@ class ApplicationController < ActionController::API
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, PATCH, DELETE, OPTIONS'
     response.headers['Access-Control-Allow-Headers'] =
-      'Origin, Content-Type, Accept, Authorization, Token, Auth-Token, Email, X-User-Token, X-User-Email'
+      'Origin, Content-Type, Accept, Authorization, Token, Auth-Token, X-XSRF-TOKEN'
     response.headers['Access-Control-Max-Age'] = '1728000'
   end
 end
