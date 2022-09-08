@@ -34,7 +34,7 @@ class ApplicationController < ActionController::API
   protected
 
   def cors_set_access_control_headers
-    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Origin'] = Rails.env.development? ? 'http://localhost:3001' : 'https://payreco.vercel.app'
     response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, PATCH, DELETE, OPTIONS'
     response.headers['Access-Control-Allow-Headers'] =
       'Origin, Content-Type, Accept, Authorization, Token, Auth-Token, X-XSRF-TOKEN'
