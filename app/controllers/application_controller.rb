@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
-  include ActionController::RequestForgeryProtection
   include ActionController::HttpAuthentication::Token::ControllerMethods
   before_action :authenticate
 
