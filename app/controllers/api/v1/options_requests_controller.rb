@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class OptionsRequestController < ApplicationController
+    class OptionsRequestsController < ApplicationController
       ACCESS_CONTROL_ALLOW_METHODS = %w[GET OPTIONS PUT DELETE POST].freeze
       ACCESS_CONTROL_ALLOW_HEADERS = %w[Accept Origin Content-Type Authorization].freeze
       ACCESS_CONTROL_MAX_AGE = 86_400
