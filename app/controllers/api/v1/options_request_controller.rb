@@ -8,7 +8,7 @@ module Api
       def cors_preflight_check
         if request.method == 'OPTIONS'
           cors_set_access_control_headers
-          render plain: ''
+          head :ok
         end
       end
 
