@@ -6,10 +6,10 @@ module Api
       before_action :preflight
 
       def cors_preflight_check
-        if request.method == 'OPTIONS'
-          cors_set_access_control_headers
-          head :ok
-        end
+        return unless request.method == 'OPTIONS'
+
+        cors_set_access_control_headers
+        head :ok
       end
 
       protected
