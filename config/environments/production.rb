@@ -69,4 +69,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+<<<<<<< HEAD
+=======
+
+  # config.hosts << 'payreco.vercel.app'
+>>>>>>> 7250cf6 (検証のためproduction.rbを修正した)
 end
