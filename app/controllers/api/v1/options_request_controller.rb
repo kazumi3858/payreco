@@ -9,6 +9,7 @@ module Api
         return unless request.method == 'OPTIONS'
 
         cors_set_access_control_headers
+        render json: {}
         head :ok
       end
 
@@ -20,6 +21,7 @@ module Api
         response.headers['Access-Control-Allow-Headers'] =
           'Origin, X-Requested-With, Content-Type, Authorization, Accept'
         response.headers['Access-Control-Max-Age'] = '1728000'
+        response.headers['Access-Control-Allow-Credentials'] = true
       end
     end
   end
