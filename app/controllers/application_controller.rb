@@ -19,8 +19,6 @@ class ApplicationController < ActionController::API
     @current_user.save!
   end
 
-  private
-
   def not_authenticated
     render json: { error: { messages: ['ログインしてください'] } }, status: :unauthorized
   end
