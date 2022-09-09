@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  match '*all', controller: 'application', action: 'cors_preflight_check', via: [:options]
+  # match '*all', controller: 'application', action: 'cors_preflight_check', via: [:options]
   namespace 'api' do
     namespace 'v1' do
       get 'user', to: 'users#show'
