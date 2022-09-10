@@ -4,17 +4,16 @@ module Api
   module V1
     class WorksController < ApplicationController
       def index
-        @works = @current_user.works.order(:date, :starting_time, :created_at)
-        render json: @works
+        works = @current_user.works.order(:date, :starting_time, :created_at)
+        render json: works
       end
 
       def create
-        @work = @current_user.works.new(work_params)
-
-        if @work.save
-          render json: @work, status: :created, location: api_v1_work_url(@work)
+        work = @current_user.works.new(work_params)
+        if work.save
+          render json: work, status: :created
         else
-          render json: @work.errors, status: :unprocessable_entity
+          render json: work.errors, status: :unprocessable_entity
         end
       end
 

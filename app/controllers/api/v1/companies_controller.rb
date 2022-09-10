@@ -4,18 +4,16 @@ module Api
   module V1
     class CompaniesController < ApplicationController
       def index
-        @companies = @current_user.companies.where(deleted_at: nil).order(updated_at: :DESC)
-
-        render json: @companies
+        companies = @current_user.companies.order(updated_at: :DESC)
+        render json: companies
       end
 
       def create
-        @company = @current_user.companies.new(company_params)
-
-        if @company.save
-          render json: @company, status: :created, location: api_v1_company_url(@company)
+        company = @current_user.companies.new(company_params)
+        if company.save
+          render json: company, status: :created
         else
-          render json: @company.errors, status: :unprocessable_entity
+          render json: company.errors, status: :unprocessable_entity
         end
       end
 
@@ -31,7 +29,11 @@ module Api
       def destroy
         set_company
         @company.deleted_at = Time.zone.now
-        @company.save!
+        if @company.save
+          render status: :no_content
+        else
+          render json: @company.errors, status: :unprocessable_entity
+        end
       end
 
       private
