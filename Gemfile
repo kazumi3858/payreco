@@ -47,3 +47,4 @@ end
 
 gem 'dotenv-rails'
 gem 'jwt'
+gem 'resolv-replace'
