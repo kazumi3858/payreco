@@ -7,7 +7,6 @@ Rails.application.routes.draw do
       resources :authentications, only: [:destroy]
       resources :companies, :works, only: [:index, :create, :update, :destroy]
       resources :exchange_rates, only: [:index]
-      resources :tests, only: [:index]
     end
   end
 end
