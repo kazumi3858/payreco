@@ -1,0 +1,12 @@
+name: daily-cron
+on:
+  schedule:
+    - cron: '0 23 * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Exchange Rate API
+        run: |
+          curl --request GET \
+          --url 'https://payreco.fly.dev/api/v1/exchange_rates'
