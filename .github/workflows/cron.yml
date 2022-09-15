@@ -1,11 +1,11 @@
 name: daily-cron
 on:
   schedule:
-    - cron: '30 1,2 * * *'
+    - cron: '30 * * * *'
 
 jobs:
-  build:
-    name: build
+  run:
+    name: Call Exchange Rate API
     runs-on: ubuntu-latest
     steps:
       - name: curl
