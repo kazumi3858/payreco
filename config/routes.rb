@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       delete 'user', to: 'users#destroy'
       resources :authentications, only: [:destroy]
       resources :companies, :works, only: [:index, :create, :update, :destroy]
-      resources :exchange_rates, only: [:index]
+      resources :exchange_rates, only: [:index, :create]
     end
   end
 end
