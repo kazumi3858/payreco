@@ -4,10 +4,6 @@ class ExchangeRate < ApplicationRecord
   CURRENCY_NAMES = %w[円 米ドル ユーロ 英ポンド インドルピー 豪ドル
                       カナダドル ランド NZドル SGドル 人民元 スイスフラン].freeze
 
-  def old_data?
-    created_at < Time.zone.now.beginning_of_day
-  end
-
   def self.data
     response = JSON.parse(call_api)
     rate = response['conversion_rates'].slice('JPY', 'USD', 'EUR', 'GBP', 'INR', 'AUD', 'CAD', 'ZAR', 'NZD',
