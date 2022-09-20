@@ -4,12 +4,12 @@ module Api
   module V1
     class CompaniesController < ApplicationController
       def index
-        companies = @current_user.companies.order(updated_at: :DESC)
+        companies = current_user.companies.order(updated_at: :DESC)
         render json: companies
       end
 
       def create
-        company = @current_user.companies.new(company_params)
+        company = current_user.companies.new(company_params)
         if company.save
           render json: company, status: :created
         else
@@ -39,7 +39,7 @@ module Api
       private
 
       def set_company
-        @company = @current_user.companies.find(params[:id])
+        @company = current_user.companies.find(params[:id])
       end
 
       def company_params

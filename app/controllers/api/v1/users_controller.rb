@@ -4,19 +4,19 @@ module Api
   module V1
     class UsersController < ApplicationController
       def show
-        render json: @current_user
+        render json: current_user
       end
 
       def update
-        if @current_user.update(user_params)
-          render json: @current_user
+        if current_user.update(user_params)
+          render json: current_user
         else
-          render json: @current_user.errors, status: :unprocessable_entity
+          render json: current_user.errors, status: :unprocessable_entity
         end
       end
 
       def destroy
-        @current_user = nil
+        current_user = nil # rubocop:disable Lint/UselessAssignment
       end
 
       private
