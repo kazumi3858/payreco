@@ -57,12 +57,10 @@ RSpec.describe 'Api::V1::Works', type: :request do
   end
 
   describe 'DELETE /api/v1/works/:id' do
-    let(:headers) { { 'Content-Type' => 'application/json' } }
-
     context 'when delete' do
       it 'returns expected status' do
         work = create(:work, user_id: current_user.id)
-        delete "/api/v1/works/#{work.id}", headers: headers
+        delete "/api/v1/works/#{work.id}"
         expect(response).to have_http_status(:no_content)
         assert_request_schema_confirm
       end
