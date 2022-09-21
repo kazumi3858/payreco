@@ -29,6 +29,7 @@ module Api
       def destroy
         set_work
         @work.destroy
+        head :no_content
       end
 
       private

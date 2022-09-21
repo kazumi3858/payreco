@@ -17,6 +17,7 @@ module Api
 
       def destroy
         current_user = nil # rubocop:disable Lint/UselessAssignment
+        head :no_content
       end
 
       private

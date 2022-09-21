@@ -30,7 +30,7 @@ module Api
         set_company
         @company.deleted_at = Time.zone.now
         if @company.save
-          render status: :no_content
+          head :no_content
         else
           render json: @company.errors, status: :unprocessable_entity
         end
