@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.0.3
 x-stoplight:
   id: g27g8q3gjuf7m
 info:
@@ -42,7 +42,7 @@ paths:
         - Users
       parameters: []
     patch:
-      summary: Update a use
+      summary: Update a user
       operationId: patch-users-userId
       responses:
         '200':
@@ -173,6 +173,8 @@ paths:
       responses:
         '201':
           description: created
+        '422':
+          description: Unprocessable Entity (WebDAV)
       requestBody:
         content:
           application/json:
@@ -239,6 +241,8 @@ paths:
       responses:
         '201':
           description: created
+        '422':
+          description: Unprocessable Entity (WebDAV)
       requestBody:
         content:
           application/json:
@@ -332,6 +336,40 @@ paths:
       operationId: get-exchange-rates
       description: Get exchange rates
     parameters: []
+    post:
+      summary: Get exchange rates
+      operationId: post-exchange_rates
+      responses:
+        '201':
+          description: Created
+        '422':
+          description: Unprocessable Entity (WebDAV)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  year_and_month: 202208
+                  exchange_rate_list:
+                    円: 1
+                    米ドル: 0.007416
+                    ユーロ: 0.007282
+                    英ポンド: 0.006149
+                    インドルピー: 0.5887
+                    豪ドル: 0.01075
+                    カナダドル: 0.009609
+                    ランド: 0.124
+                    NZドル: 0.01187
+                    SGドル: 0.01022
+                    人民元: 0.05024
+                    スイスフラン: 0.007126
+              properties:
+                year_and_month:
+                  type: integer
+                exchange_rate_list:
+                  type: object
   '/authentications/{user_id}':
     delete:
       summary: Delete an authentication
@@ -373,9 +411,8 @@ components:
           type: string
           readOnly: true
         target_amount:
-          type:
-            - number
-            - 'null'
+          type: number
+          nullable: true
         created_at:
           type: string
           format: date-time
@@ -418,9 +455,8 @@ components:
         hourly_wage_system:
           type: boolean
         wage_amount:
-          type:
-            - number
-            - 'null'
+          type: number
+          nullable: true
           format: float
         currency_type:
           type: string
@@ -428,9 +464,8 @@ components:
           type: string
           readOnly: true
         deleted_at:
-          type:
-            - string
-            - 'null'
+          type: string
+          nullable: true
           format: date-time
         created_at:
           type: string
@@ -479,19 +514,16 @@ components:
           type: string
           format: date
         starting_time:
-          type:
-            - string
-            - 'null'
+          type: string
+          nullable: true
           format: date-time
         ending_time:
-          type:
-            - string
-            - 'null'
+          type: string
+          nullable: true
           format: date-time
         break_time:
-          type:
-            - number
-            - 'null'
+          type: number
+          nullable: true
         working_hours:
           type: number
           format: float
@@ -499,9 +531,8 @@ components:
           type: number
           format: float
         memo:
-          type:
-            - string
-            - 'null'
+          type: string
+          nullable: true
         user_id:
           type: string
           readOnly: true
@@ -599,19 +630,16 @@ components:
           type: string
           format: date
         starting_time:
-          type:
-            - string
-            - 'null'
+          type: string
+          nullable: true
           format: date-time
         ending_time:
-          type:
-            - string
-            - 'null'
+          type: string
+          nullable: true
           format: date-time
         break_time:
-          type:
-            - number
-            - 'null'
+          type: number
+          nullable: true
         working_hours:
           type: number
           format: float
@@ -619,9 +647,8 @@ components:
           type: number
           format: float
         memo:
-          type:
-            - string
-            - 'null'
+          type: string
+          nullable: true
         company_id:
           type: string
       required:
@@ -654,9 +681,8 @@ components:
         hourly_wage_system:
           type: boolean
         wage_amount:
-          type:
-            - number
-            - 'null'
+          type: number
+          nullable: true
           format: float
         currency_type:
           type: string
@@ -680,9 +706,8 @@ components:
         - target_amount: 200000
       properties:
         target_amount:
-          type:
-            - number
-            - 'null'
+          type: number
+          nullable: true
       required:
         - target_amount
       title: UserParams

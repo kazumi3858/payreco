@@ -4,12 +4,12 @@ module Api
   module V1
     class WorksController < ApplicationController
       def index
-        works = @current_user.works.order(:date, :starting_time, :created_at)
+        works = current_user.works.order(:date, :starting_time, :created_at)
         render json: works
       end
 
       def create
-        work = @current_user.works.new(work_params)
+        work = current_user.works.new(work_params)
         if work.save
           render json: work, status: :created
         else
@@ -29,12 +29,13 @@ module Api
       def destroy
         set_work
         @work.destroy
+        head :no_content
       end
 
       private
 
       def set_work
-        @work = @current_user.works.find(params[:id])
+        @work = current_user.works.find(params[:id])
       end
 
       def work_params

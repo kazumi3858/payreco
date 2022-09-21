@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :company do
-    name { '株式会社ABCD' }
+    sequence(:name) { |n| "株式会社#{n}" }
     hourly_wage_system { true }
     wage_amount { 10 }
     currency_type { '米ドル' }
