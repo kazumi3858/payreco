@@ -25,9 +25,16 @@ RSpec.describe 'Api::V1::ExchangeRates', type: :request do
   end
 
   describe 'POST /api/v1/exchange_rates' do
-    it 'success' do
-      post '/api/v1/exchange_rates'
-      expect(response).to have_http_status :ok
+    let(:headers) { { 'Content-Type' => 'application/json' } }
+
+    context 'when create' do
+      let(:params) { attributes_for(:exchange_rate).to_json }
+
+      it 'returns expected status' do
+        post '/api/v1/exchange_rates', params: params, headers: headers
+        expect(response).to have_http_status(:created)
+        assert_request_schema_confirm
+      end
     end
   end
 end
