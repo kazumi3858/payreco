@@ -7,7 +7,8 @@ module AuthorizationHelper
                                              SGD: 0.009833, SZL: 0.1235, USD: 0.006980, ZAR: 0.1235 } }.to_json
 
   def authorization_stub
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user) # rubocop:disable RSpec/AnyInstance
+    allow_any_instance_of(ApplicationController)
+      .to receive(:current_user).and_return(current_user)
   end
 
   def exchange_rate_api_stub
@@ -15,6 +16,7 @@ module AuthorizationHelper
   end
 
   def api_token_stub
-    allow_any_instance_of(Api::V1::ExchangeRatesController).to receive(:valid_token?).and_return(true) # rubocop:disable RSpec/AnyInstance
+    allow_any_instance_of(Api::V1::ExchangeRatesController)
+      .to receive(:authenticate_github_actions_token).and_return(true)
   end
 end
