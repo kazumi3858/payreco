@@ -33,4 +33,13 @@ RSpec.describe 'Api::V1::Users', type: :request do
       end
     end
   end
+
+  describe 'DELETE /api/v1/user' do
+    context 'when delete' do
+      it 'returns expected status' do
+        delete '/api/v1/user'
+        expect(response).to have_http_status(:no_content)
+      end
+    end
+  end
 end

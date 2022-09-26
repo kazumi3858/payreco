@@ -12,4 +12,4 @@ jobs:
         run: |
             curl -X POST https://payreco.fly.dev/api/v1/exchange_rates \
             -H 'Content-Type: application/json' \
-            -d '{"token": "${{ secrets.RAILS_API_CALL_TOKEN }}" }'
+            -H 'Authorization: Bearer ${{ secrets.RAILS_API_CALL_TOKEN }}'

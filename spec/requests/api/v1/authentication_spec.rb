@@ -10,11 +10,23 @@ RSpec.describe 'Api::V1::Authentications', type: :request do
   end
 
   describe 'DELETE /api/v1/authentications/:id' do
+    before do
+      company = create(:company, user_id: current_user.id)
+      create(:work, user_id: current_user.id, company_id: company.id)
+    end
+
     context 'when delete' do
       it 'returns expected status' do
-        params_id = current_user.id
-        delete "/api/v1/authentications/#{params_id}"
+        delete "/api/v1/authentications/#{current_user.id}"
         expect(response).to have_http_status(:no_content)
+      end
+
+      it 'deletes users data' do
+        expect(current_user.companies.exists?).to be(true)
+        expect(current_user.works.exists?).to be(true)
+        delete "/api/v1/authentications/#{current_user.id}"
+        expect(current_user.companies.exists?).to be(false)
+        expect(current_user.works.exists?).to be(false)
       end
     end
   end

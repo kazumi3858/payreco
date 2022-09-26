@@ -55,12 +55,19 @@ RSpec.describe 'Api::V1::Companies', type: :request do
   end
 
   describe 'DELETE /api/v1/companies/:id' do
+    let(:company) { create(:company, user_id: current_user.id) }
+
     context 'when delete' do
       it 'returns expected status' do
-        company = create(:company, user_id: current_user.id)
         delete "/api/v1/companies/#{company.id}"
         expect(response).to have_http_status(:no_content)
         assert_request_schema_confirm
+      end
+
+      it 'updates deleted_at time stamp' do
+        expect(company.deleted_at).to be_nil
+        delete "/api/v1/companies/#{company.id}"
+        expect(company.reload.deleted_at).to be_truthy
       end
     end
   end

@@ -27,3 +27,9 @@ Metrics/ClassLength:
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
