@@ -14,9 +14,8 @@ module Api
       def create
         return unless authenticate_github_actions_token
 
-        formed_year_and_month = Time.zone.today.to_s.delete('-').slice(0..5).to_i
-        exchange_rate = ExchangeRate.find_or_initialize_by(year_and_month: formed_year_and_month)
-        if exchange_rate.update(year_and_month: formed_year_and_month, exchange_rate_list: ExchangeRate.data)
+        exchange_rate = ExchangeRate.find_or_initialize_by(year_and_month: year_and_month)
+        if exchange_rate.update(year_and_month: year_and_month, exchange_rate_list: ExchangeRate.data)
           render json: exchange_rate, status: :created
         else
           render json: exchange_rate.errors, status: :unprocessable_entity
@@ -29,6 +28,10 @@ module Api
         authenticate_or_request_with_http_token do |token, _options|
           ActiveSupport::SecurityUtils.secure_compare(token, ENV.fetch('RAILS_API_CALL_TOKEN', nil))
         end
+      end
+
+      def year_and_month
+        Time.zone.today.to_s.delete('-').slice(0..5).to_i
       end
     end
   end
