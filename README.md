@@ -55,7 +55,6 @@ $ yarn start
 |  NEXT_PUBLIC_FIREBASE_MESSAGE_SENDER_ID  |  firebase authの設定に必要なデータ  |
 |  NEXT_PUBLIC_FIREBASE_APP_ID  |  firebase authの設定に必要なデータ  |
 |  TEST_UID  |  cypressテストでfirebase authによるログインを実行するために必要なデータ  |
-|  CYPRESS_FIREBASE_API_KEY  |  cypressテストでfirebase authによるログインを実行するために必要なデータ  |
 |  CYPRESS_FIREBASE_AUTH_DOMAIN  |  cypressテストでfirebase authによるログインを実行するために必要なデータ  |
 |  CYPRESS_FIREBASE_PROJECT_ID  |  cypressテストでfirebase authによるログインを実行するために必要なデータ  |
 |  CYPRESS_FIREBASE_STORAGE_BUCKET  |  cypressテストでfirebase authによるログインを実行するために必要なデータ  |
