@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ExchangeRate < ApplicationRecord
-  validates :year_and_month, presence: true
+  validates :year_and_month, presence: true, numericality: { in: 202201..209912 }
   validates :exchange_rate_list, presence: true
 
   CURRENCY_NAMES = %w[円 米ドル ユーロ 英ポンド インドルピー 豪ドル
