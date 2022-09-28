@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ExchangeRate < ApplicationRecord
+  validates :year_and_month, presence: true
+  validates :exchange_rate_list, presence: true
+
   CURRENCY_NAMES = %w[円 米ドル ユーロ 英ポンド インドルピー 豪ドル
                       カナダドル ランド NZドル SGドル 人民元 スイスフラン].freeze
 
