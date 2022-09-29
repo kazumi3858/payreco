@@ -6,18 +6,18 @@ User.destroy_all
 
 User.create!(
   uid: 'Cu6un7yKom6t87v6Yi6uttVH2ctk',
-  name: '田中 もくひょう無し郎',
+  name: 'Tanaka Taro',
   target_amount: nil
 )
 
 User.create!(
   uid: 'a7Cg274i8Rz5ecc6GsxqMS3sphzt',
-  name: '山本 もくひょうアリ子',
+  name: 'Yamamoto Hanako',
   target_amount: 200000
 )
 
 User.first.companies.create!(
-  name: 'ジキュウワーク',
+  name: '株式会社ジキュウ',
   hourly_wage_system: true,
   wage_amount: 10,
   currency_type: '米ドル',
@@ -29,14 +29,6 @@ User.first.companies.create!(
   hourly_wage_system: false,
   wage_amount: nil,
   currency_type: '円',
-  deleted_at: nil
-)
-
-User.first.companies.create!(
-  name: 'Abc company',
-  hourly_wage_system: true,
-  wage_amount: 10,
-  currency_type: 'カナダドル',
   deleted_at: nil
 )
 
