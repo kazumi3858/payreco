@@ -15,8 +15,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
     end
 
     it 'returns expected status' do
-      expect(response).to have_http_status(:ok)
-      assert_response_schema_confirm
+      assert_response_schema_confirm(200)
     end
   end
 

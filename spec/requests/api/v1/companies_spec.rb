@@ -18,8 +18,7 @@ RSpec.describe 'Api::V1::Companies', type: :request do
     end
 
     it 'returns expected status' do
-      expect(response).to have_http_status(:ok)
-      assert_response_schema_confirm
+      assert_response_schema_confirm(200)
     end
 
     it 'has expected responses' do

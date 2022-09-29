@@ -24,7 +24,7 @@ RSpec.describe 'ApplicationController', type: :request do
 
         expect do
           get '/api/v1/user', headers: { 'Authorization' => "Bearer #{invalid_token}" }
-        end.to raise_error(RuntimeError, "Firebase ID token has invalid signature. Not enough or too many segments")
+        end.to raise_error(RuntimeError, 'Firebase ID token has invalid signature. Not enough or too many segments')
       end
       # rubocop:enable RSpec/ExampleLength
     end
