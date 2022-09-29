@@ -59,7 +59,7 @@ RSpec.describe 'Api::V1::Companies', type: :request do
         params[:name] = ''
         patch api_v1_company_path(company.id), params: params.to_json, headers: headers
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(company.reload.name).to match('current name')
+        expect(company.reload.name).to eq 'current name'
       end
     end
   end

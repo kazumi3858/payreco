@@ -14,8 +14,8 @@ RSpec.describe 'Api::V1::Users', type: :request do
       get api_v1_user_path
     end
 
-    it 'return expected status' do
-      expect(response).to have_http_status :ok
+    it 'returns expected status' do
+      expect(response).to have_http_status(:ok)
       assert_response_schema_confirm
     end
   end
@@ -24,12 +24,21 @@ RSpec.describe 'Api::V1::Users', type: :request do
     let(:headers) { { 'Content-Type' => 'application/json' } }
 
     context 'when update' do
-      let(:params) { attributes_for(:user).to_json }
+      let(:params) { attributes_for(:user, id: current_user.id, target_amount: nil) }
 
-      it 'returns expected status' do
-        patch api_v1_user_path, params: params, headers: headers
+      it 'can update' do
+        params[:target_amount] = 100000
+        patch api_v1_user_path, params: params.to_json, headers: headers
         expect(response).to have_http_status(:ok)
+        expect(current_user.reload.target_amount).to eq 100000
         assert_request_schema_confirm
+      end
+
+      it 'cannot update with invalid params' do
+        params[:target_amount] = 0
+        patch api_v1_user_path, params: params.to_json, headers: headers
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(current_user.reload.target_amount).to be_nil
       end
     end
   end

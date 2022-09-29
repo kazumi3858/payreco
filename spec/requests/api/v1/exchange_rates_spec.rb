@@ -31,14 +31,14 @@ RSpec.describe 'Api::V1::ExchangeRates', type: :request do
       it 'can post' do
         headers = { 'Content-Type' => 'application/json' }
         api_token_stub
-        expect { post api_v1_exchange_rates_path, params: params, headers: headers }.to change(ExchangeRate, :count).by(1)
+        expect { post api_v1_exchange_rates_path, params:, headers: }.to change(ExchangeRate, :count).by(1)
         expect(response).to have_http_status(:created)
         assert_request_schema_confirm
       end
 
       it 'cannot post with invalid token' do
         headers = { 'Content-Type' => 'application/json', 'Authorization' => 'invalid token' }
-        expect { post api_v1_exchange_rates_path, params: params, headers: headers }.not_to change(ExchangeRate, :count)
+        expect { post api_v1_exchange_rates_path, params:, headers: }.not_to change(ExchangeRate, :count)
         expect(response).to have_http_status(:unauthorized)
       end
     end
