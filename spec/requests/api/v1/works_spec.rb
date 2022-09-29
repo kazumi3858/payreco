@@ -45,14 +45,14 @@ RSpec.describe 'Api::V1::Works', type: :request do
   end
 
   describe 'PATCH /api/v1/works/:id' do
-    let(:work) { create(:work, working_hours: 1.0, user_id: current_user.id) }
+    let(:work) { create(:work, working_hours: 8.0, user_id: current_user.id) }
 
     context 'when update' do
       it 'can update' do
-        params[:working_hours] = 2.5
+        params[:working_hours] = 0.01
         patch api_v1_work_path(work.id), params: params.to_json, headers: headers
         expect(response).to have_http_status(:ok)
-        expect(work.reload.working_hours).to eq 2.5
+        expect(work.reload.working_hours).to eq 0.01
         assert_request_schema_confirm
       end
 
@@ -60,7 +60,7 @@ RSpec.describe 'Api::V1::Works', type: :request do
         params[:working_hours] = 0.0
         patch api_v1_work_path(work.id), params: params.to_json, headers: headers
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(work.reload.working_hours).to eq 1.0
+        expect(work.reload.working_hours).to eq 8.0
       end
     end
   end

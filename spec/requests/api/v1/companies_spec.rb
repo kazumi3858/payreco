@@ -48,10 +48,10 @@ RSpec.describe 'Api::V1::Companies', type: :request do
 
     context 'when update' do
       it 'can update' do
-        params[:name] = 'new name'
+        params[:name] = 'a'
         patch api_v1_company_path(company.id), params: params.to_json, headers: headers
         expect(response).to have_http_status(:ok)
-        expect(company.reload.name).to eq 'new name'
+        expect(company.reload.name).to eq 'a'
         assert_request_schema_confirm
       end
 

@@ -27,10 +27,10 @@ RSpec.describe 'Api::V1::Users', type: :request do
       let(:params) { attributes_for(:user, id: current_user.id, target_amount: nil) }
 
       it 'can update' do
-        params[:target_amount] = 100000
+        params[:target_amount] = 1
         patch api_v1_user_path, params: params.to_json, headers: headers
         expect(response).to have_http_status(:ok)
-        expect(current_user.reload.target_amount).to eq 100000
+        expect(current_user.reload.target_amount).to eq 1
         assert_request_schema_confirm
       end
 
