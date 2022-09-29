@@ -24,7 +24,7 @@ RSpec.describe 'Api::V1::Authentications', type: :request do
       it 'deletes users data' do
         expect(current_user.companies.exists?).to be(true)
         expect(current_user.works.exists?).to be(true)
-        delete api_v1_authentication_path(current_user.id)
+        expect { delete api_v1_authentication_path(current_user.id) }.to change(User, :count).by(-1)
         expect(current_user.companies.exists?).to be(false)
         expect(current_user.works.exists?).to be(false)
       end
