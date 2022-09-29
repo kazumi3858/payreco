@@ -14,8 +14,8 @@ RSpec.describe 'Api::V1::ExchangeRates', type: :request do
       get api_v1_exchange_rates_path
     end
 
-    it 'success' do
-      expect(response).to have_http_status :ok
+    it 'returns expected status' do
+      expect(response).to have_http_status(:ok)
       assert_response_schema_confirm
     end
 
@@ -28,17 +28,17 @@ RSpec.describe 'Api::V1::ExchangeRates', type: :request do
     context 'when create' do
       let(:params) { attributes_for(:exchange_rate).to_json }
 
-      it 'returns expected status' do
+      it 'can post' do
         headers = { 'Content-Type' => 'application/json' }
         api_token_stub
-        post api_v1_exchange_rates_path, params: params, headers: headers
+        expect { post api_v1_exchange_rates_path, params: params, headers: headers }.to change(ExchangeRate, :count).by(1)
         expect(response).to have_http_status(:created)
         assert_request_schema_confirm
       end
 
-      it 'returns expected status with invalid token' do
-        headers = { 'Content-Type' => 'application/json', 'Authorization' => 'dummy token' }
-        post api_v1_exchange_rates_path, params: params, headers: headers
+      it 'cannot post with invalid token' do
+        headers = { 'Content-Type' => 'application/json', 'Authorization' => 'invalid token' }
+        expect { post api_v1_exchange_rates_path, params: params, headers: headers }.not_to change(ExchangeRate, :count)
         expect(response).to have_http_status(:unauthorized)
       end
     end
