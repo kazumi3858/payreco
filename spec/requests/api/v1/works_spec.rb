@@ -4,6 +4,9 @@ require 'rails_helper'
 
 RSpec.describe 'Api::V1::Works', type: :request do
   let(:current_user) { create(:user) }
+  let(:company) { create(:company) }
+  let(:headers) { { 'Content-Type' => 'application/json' } }
+  let(:params) { attributes_for(:work, user_id: current_user.id, company_id: company.id) }
 
   before do
     authorization_stub
@@ -12,12 +15,11 @@ RSpec.describe 'Api::V1::Works', type: :request do
   describe 'GET /work' do
     before do
       create_list(:work, 10, user_id: current_user.id)
-      get '/api/v1/works'
+      get api_v1_works_path
     end
 
     it 'returns expected status' do
-      expect(response).to have_http_status(:ok)
-      assert_response_schema_confirm
+      assert_response_schema_confirm(200)
     end
 
     it 'has expected responses' do
@@ -26,32 +28,38 @@ RSpec.describe 'Api::V1::Works', type: :request do
   end
 
   describe 'POST /api/v1/works' do
-    let(:headers) { { 'Content-Type' => 'application/json' } }
-    let(:company) { create(:company) }
-
     context 'when create' do
-      let(:params) { attributes_for(:work, user_id: current_user.id, company_id: company.id).to_json }
-
-      it 'returns expected status' do
-        post '/api/v1/works', params: params, headers: headers
+      it 'can post' do
+        expect { post api_v1_works_path, params: params.to_json, headers: }.to change(Work, :count).by(1)
         expect(response).to have_http_status(:created)
         assert_request_schema_confirm
+      end
+
+      it 'cannot post with invalid params' do
+        params[:working_hours] = 0.0
+        expect { post api_v1_works_path, params: params.to_json, headers: }.not_to change(Work, :count)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
   describe 'PATCH /api/v1/works/:id' do
-    let(:headers) { { 'Content-Type' => 'application/json' } }
-    let(:company) { create(:company) }
+    let(:work) { create(:work, working_hours: 8.0, user_id: current_user.id) }
 
     context 'when update' do
-      let(:params) { attributes_for(:work, user_id: current_user.id, company_id: company.id).to_json }
-
-      it 'returns expected status' do
-        work = create(:work, user_id: current_user.id)
-        patch "/api/v1/works/#{work.id}", params: params, headers: headers
+      it 'can update' do
+        params[:working_hours] = 0.01
+        patch api_v1_work_path(work.id), params: params.to_json, headers: headers
         expect(response).to have_http_status(:ok)
+        expect(work.reload.working_hours).to eq 0.01
         assert_request_schema_confirm
+      end
+
+      it 'cannot update with invalid params' do
+        params[:working_hours] = 0.0
+        patch api_v1_work_path(work.id), params: params.to_json, headers: headers
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(work.reload.working_hours).to eq 8.0
       end
     end
   end
@@ -60,7 +68,7 @@ RSpec.describe 'Api::V1::Works', type: :request do
     context 'when delete' do
       it 'returns expected status' do
         work = create(:work, user_id: current_user.id)
-        delete "/api/v1/works/#{work.id}"
+        expect { delete api_v1_work_path(work.id) }.to change(Work, :count).by(-1)
         expect(response).to have_http_status(:no_content)
         assert_request_schema_confirm
       end

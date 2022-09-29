@@ -11,12 +11,11 @@ RSpec.describe 'Api::V1::ExchangeRates', type: :request do
     before do
       api_token_stub
       create_list(:exchange_rate, 2)
-      get '/api/v1/exchange_rates'
+      get api_v1_exchange_rates_path
     end
 
-    it 'success' do
-      expect(response).to have_http_status :ok
-      assert_response_schema_confirm
+    it 'returns expected status' do
+      assert_response_schema_confirm(200)
     end
 
     it 'has expected responses' do
@@ -28,17 +27,17 @@ RSpec.describe 'Api::V1::ExchangeRates', type: :request do
     context 'when create' do
       let(:params) { attributes_for(:exchange_rate).to_json }
 
-      it 'returns expected status' do
+      it 'can post' do
         headers = { 'Content-Type' => 'application/json' }
         api_token_stub
-        post '/api/v1/exchange_rates', params: params, headers: headers
+        expect { post api_v1_exchange_rates_path, params:, headers: }.to change(ExchangeRate, :count).by(1)
         expect(response).to have_http_status(:created)
         assert_request_schema_confirm
       end
 
-      it 'returns expected status with invalid token' do
-        headers = { 'Content-Type' => 'application/json', 'Authorization' => 'dummy token' }
-        post '/api/v1/exchange_rates', params: params, headers: headers
+      it 'cannot post with invalid token' do
+        headers = { 'Content-Type' => 'application/json', 'Authorization' => 'invalid token' }
+        expect { post api_v1_exchange_rates_path, params:, headers: }.not_to change(ExchangeRate, :count)
         expect(response).to have_http_status(:unauthorized)
       end
     end

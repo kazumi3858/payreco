@@ -4,6 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Api::V1::Companies', type: :request do
   let(:current_user) { create(:user) }
+  let(:headers) { { 'Content-Type' => 'application/json' } }
+  let(:params) { attributes_for(:company) }
 
   before do
     authorization_stub
@@ -12,12 +14,11 @@ RSpec.describe 'Api::V1::Companies', type: :request do
   describe 'GET /api/v1/companies' do
     before do
       create_list(:company, 3, user_id: current_user.id)
-      get '/api/v1/companies'
+      get api_v1_companies_path
     end
 
     it 'returns expected status' do
-      expect(response).to have_http_status(:ok)
-      assert_response_schema_confirm
+      assert_response_schema_confirm(200)
     end
 
     it 'has expected responses' do
@@ -26,30 +27,38 @@ RSpec.describe 'Api::V1::Companies', type: :request do
   end
 
   describe 'POST /api/v1/companies' do
-    let(:headers) { { 'Content-Type' => 'application/json' } }
-
     context 'when create' do
-      let(:params) { attributes_for(:company).to_json }
-
-      it 'returns expected status' do
-        post '/api/v1/companies', params: params, headers: headers
+      it 'can post' do
+        expect { post api_v1_companies_path, params: params.to_json, headers: }.to change(Company, :count).by(1)
         expect(response).to have_http_status(:created)
         assert_request_schema_confirm
+      end
+
+      it 'cannot post with invalid params' do
+        params[:name] = ''
+        expect { post api_v1_companies_path, params: params.to_json, headers: }.not_to change(Company, :count)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
   describe 'PATCH /api/v1/companies/:id' do
-    let(:headers) { { 'Content-Type' => 'application/json' } }
+    let(:company) { create(:company, name: 'current name', user_id: current_user.id) }
 
     context 'when update' do
-      let(:params) { attributes_for(:company).to_json }
-
-      it 'returns expected status' do
-        company = create(:company, user_id: current_user.id)
-        patch "/api/v1/companies/#{company.id}", params: params, headers: headers
+      it 'can update' do
+        params[:name] = 'a'
+        patch api_v1_company_path(company.id), params: params.to_json, headers: headers
         expect(response).to have_http_status(:ok)
+        expect(company.reload.name).to eq 'a'
         assert_request_schema_confirm
+      end
+
+      it 'cannot update with invalid params' do
+        params[:name] = ''
+        patch api_v1_company_path(company.id), params: params.to_json, headers: headers
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(company.reload.name).to eq 'current name'
       end
     end
   end
@@ -59,14 +68,14 @@ RSpec.describe 'Api::V1::Companies', type: :request do
 
     context 'when delete' do
       it 'returns expected status' do
-        delete "/api/v1/companies/#{company.id}"
+        delete api_v1_company_path(company.id)
         expect(response).to have_http_status(:no_content)
         assert_request_schema_confirm
       end
 
       it 'updates deleted_at time stamp' do
         expect(company.deleted_at).to be_nil
-        delete "/api/v1/companies/#{company.id}"
+        expect { delete api_v1_company_path(company.id) }.not_to change(Company, :count)
         expect(company.reload.deleted_at).to be_truthy
       end
     end

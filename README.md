@@ -48,20 +48,20 @@ $ yarn start
 
 |  環境変数名  |  説明  |
 | ---- | ---- |
-|  NEXT_PUBLIC_FIREBASE_API_KEY  |  firebase authの設定に必要なデータ  |
-|  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN  |  firebase authの設定に必要なデータ  |
-|  NEXT_PUBLIC_FIREBASE_PROJECT_ID  |  firebase authの設定に必要なデータ  |
-|  NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET  |  firebase authの設定に必要なデータ  |
-|  NEXT_PUBLIC_FIREBASE_MESSAGE_SENDER_ID  |  firebase authの設定に必要なデータ  |
-|  NEXT_PUBLIC_FIREBASE_APP_ID  |  firebase authの設定に必要なデータ  |
-|  TEST_UID  |  cypressテストでfirebase authによるログインを実行するために必要なデータ  |
-|  CYPRESS_FIREBASE_API_KEY  |  cypressテストでfirebase authによるログインを実行するために必要なデータ  |
-|  CYPRESS_FIREBASE_AUTH_DOMAIN  |  cypressテストでfirebase authによるログインを実行するために必要なデータ  |
-|  CYPRESS_FIREBASE_PROJECT_ID  |  cypressテストでfirebase authによるログインを実行するために必要なデータ  |
-|  CYPRESS_FIREBASE_STORAGE_BUCKET  |  cypressテストでfirebase authによるログインを実行するために必要なデータ  |
-|  CYPRESS_FIREBASE_MESSAGE_SENDER_ID  |  cypressテストでfirebase authによるログインを実行するために必要なデータ  |
-|  CYPRESS_FIREBASE_APP_ID  |  cypressテストでfirebase authによるログインを実行するために必要なデータ  |
-|  SERVICE_ACCOUNT  |  cypressテストでfirebase authによるログインを実行するために必要なデータ  |
+|  NEXT_PUBLIC_FIREBASE_API_KEY  |  Firebase Authenticationの設定に必要なデータ  |
+|  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN  |  Firebase Authenticationの設定に必要なデータ  |
+|  NEXT_PUBLIC_FIREBASE_PROJECT_ID  |  Firebase Authenticationの設定に必要なデータ  |
+|  NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET  |  Firebase Authenticationの設定に必要なデータ  |
+|  NEXT_PUBLIC_FIREBASE_MESSAGE_SENDER_ID  |  Firebase Authenticationの設定に必要なデータ  |
+|  NEXT_PUBLIC_FIREBASE_APP_ID  |  Firebase Authenticationの設定に必要なデータ  |
+|  TEST_UID  |  CypressテストでFirebase Authenticationによるログインを実行するために必要なデータ  |
+|  CYPRESS_FIREBASE_API_KEY  |  CypressテストでFirebase Authenticationによるログインを実行するために必要なデータ  |
+|  CYPRESS_FIREBASE_AUTH_DOMAIN  |  CypressテストでFirebase Authenticationによるログインを実行するために必要なデータ  |
+|  CYPRESS_FIREBASE_PROJECT_ID  |  CypressテストでFirebase Authenticationによるログインを実行するために必要なデータ  |
+|  CYPRESS_FIREBASE_STORAGE_BUCKET  |  CypressテストでFirebase Authenticationによるログインを実行するために必要なデータ  |
+|  CYPRESS_FIREBASE_MESSAGE_SENDER_ID  |  CypressテストでFirebase Authenticationによるログインを実行するために必要なデータ  |
+|  CYPRESS_FIREBASE_APP_ID  |  CypressテストでFirebase Authenticationによるログインを実行するために必要なデータ  |
+|  SERVICE_ACCOUNT  |  CypressテストでFirebase Authenticationによるログインを実行するために必要なデータ  |
 
 ## テストとリント
 ### バックエンド

@@ -11,12 +11,11 @@ RSpec.describe 'Api::V1::Users', type: :request do
 
   describe 'GET /api/v1/user' do
     before do
-      get '/api/v1/user'
+      get api_v1_user_path
     end
 
-    it 'return expected status' do
-      expect(response).to have_http_status :ok
-      assert_response_schema_confirm
+    it 'returns expected status' do
+      assert_response_schema_confirm(200)
     end
   end
 
@@ -24,12 +23,21 @@ RSpec.describe 'Api::V1::Users', type: :request do
     let(:headers) { { 'Content-Type' => 'application/json' } }
 
     context 'when update' do
-      let(:params) { attributes_for(:user).to_json }
+      let(:params) { attributes_for(:user, id: current_user.id, target_amount: nil) }
 
-      it 'returns expected status' do
-        patch '/api/v1/user', params: params, headers: headers
+      it 'can update' do
+        params[:target_amount] = 1
+        patch api_v1_user_path, params: params.to_json, headers: headers
         expect(response).to have_http_status(:ok)
+        expect(current_user.reload.target_amount).to eq 1
         assert_request_schema_confirm
+      end
+
+      it 'cannot update with invalid params' do
+        params[:target_amount] = 0
+        patch api_v1_user_path, params: params.to_json, headers: headers
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(current_user.reload.target_amount).to be_nil
       end
     end
   end
@@ -37,7 +45,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
   describe 'DELETE /api/v1/user' do
     context 'when delete' do
       it 'returns expected status' do
-        delete '/api/v1/user'
+        delete api_v1_user_path
         expect(response).to have_http_status(:no_content)
       end
     end
