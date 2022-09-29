@@ -11,7 +11,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
 
   describe 'GET /api/v1/user' do
     before do
-      get '/api/v1/user'
+      get api_v1_user_path
     end
 
     it 'return expected status' do
@@ -27,7 +27,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
       let(:params) { attributes_for(:user).to_json }
 
       it 'returns expected status' do
-        patch '/api/v1/user', params: params, headers: headers
+        patch api_v1_user_path, params: params, headers: headers
         expect(response).to have_http_status(:ok)
         assert_request_schema_confirm
       end
@@ -37,7 +37,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
   describe 'DELETE /api/v1/user' do
     context 'when delete' do
       it 'returns expected status' do
-        delete '/api/v1/user'
+        delete api_v1_user_path
         expect(response).to have_http_status(:no_content)
       end
     end

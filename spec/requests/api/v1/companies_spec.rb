@@ -12,7 +12,7 @@ RSpec.describe 'Api::V1::Companies', type: :request do
   describe 'GET /api/v1/companies' do
     before do
       create_list(:company, 3, user_id: current_user.id)
-      get '/api/v1/companies'
+      get api_v1_companies_path
     end
 
     it 'returns expected status' do
@@ -32,7 +32,7 @@ RSpec.describe 'Api::V1::Companies', type: :request do
       let(:params) { attributes_for(:company).to_json }
 
       it 'returns expected status' do
-        post '/api/v1/companies', params: params, headers: headers
+        post api_v1_companies_path, params: params, headers: headers
         expect(response).to have_http_status(:created)
         assert_request_schema_confirm
       end
@@ -47,7 +47,7 @@ RSpec.describe 'Api::V1::Companies', type: :request do
 
       it 'returns expected status' do
         company = create(:company, user_id: current_user.id)
-        patch "/api/v1/companies/#{company.id}", params: params, headers: headers
+        patch api_v1_company_path(company.id), params: params, headers: headers
         expect(response).to have_http_status(:ok)
         assert_request_schema_confirm
       end
@@ -59,14 +59,14 @@ RSpec.describe 'Api::V1::Companies', type: :request do
 
     context 'when delete' do
       it 'returns expected status' do
-        delete "/api/v1/companies/#{company.id}"
+        delete api_v1_company_path(company.id)
         expect(response).to have_http_status(:no_content)
         assert_request_schema_confirm
       end
 
       it 'updates deleted_at time stamp' do
         expect(company.deleted_at).to be_nil
-        delete "/api/v1/companies/#{company.id}"
+        delete api_v1_company_path(company.id)
         expect(company.reload.deleted_at).to be_truthy
       end
     end

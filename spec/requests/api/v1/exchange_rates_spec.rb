@@ -11,7 +11,7 @@ RSpec.describe 'Api::V1::ExchangeRates', type: :request do
     before do
       api_token_stub
       create_list(:exchange_rate, 2)
-      get '/api/v1/exchange_rates'
+      get api_v1_exchange_rates_path
     end
 
     it 'success' do
@@ -31,14 +31,14 @@ RSpec.describe 'Api::V1::ExchangeRates', type: :request do
       it 'returns expected status' do
         headers = { 'Content-Type' => 'application/json' }
         api_token_stub
-        post '/api/v1/exchange_rates', params: params, headers: headers
+        post api_v1_exchange_rates_path, params: params, headers: headers
         expect(response).to have_http_status(:created)
         assert_request_schema_confirm
       end
 
       it 'returns expected status with invalid token' do
         headers = { 'Content-Type' => 'application/json', 'Authorization' => 'dummy token' }
-        post '/api/v1/exchange_rates', params: params, headers: headers
+        post api_v1_exchange_rates_path, params: params, headers: headers
         expect(response).to have_http_status(:unauthorized)
       end
     end

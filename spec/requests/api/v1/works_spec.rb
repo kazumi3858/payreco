@@ -12,7 +12,7 @@ RSpec.describe 'Api::V1::Works', type: :request do
   describe 'GET /work' do
     before do
       create_list(:work, 10, user_id: current_user.id)
-      get '/api/v1/works'
+      get api_v1_works_path
     end
 
     it 'returns expected status' do
@@ -33,7 +33,7 @@ RSpec.describe 'Api::V1::Works', type: :request do
       let(:params) { attributes_for(:work, user_id: current_user.id, company_id: company.id).to_json }
 
       it 'returns expected status' do
-        post '/api/v1/works', params: params, headers: headers
+        post api_v1_works_path, params: params, headers: headers
         expect(response).to have_http_status(:created)
         assert_request_schema_confirm
       end
@@ -49,7 +49,7 @@ RSpec.describe 'Api::V1::Works', type: :request do
 
       it 'returns expected status' do
         work = create(:work, user_id: current_user.id)
-        patch "/api/v1/works/#{work.id}", params: params, headers: headers
+        patch api_v1_work_path(work.id), params: params, headers: headers
         expect(response).to have_http_status(:ok)
         assert_request_schema_confirm
       end
@@ -60,7 +60,7 @@ RSpec.describe 'Api::V1::Works', type: :request do
     context 'when delete' do
       it 'returns expected status' do
         work = create(:work, user_id: current_user.id)
-        delete "/api/v1/works/#{work.id}"
+        delete api_v1_work_path(work.id)
         expect(response).to have_http_status(:no_content)
         assert_request_schema_confirm
       end
