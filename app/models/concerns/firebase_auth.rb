@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This modele was created based on the following URL https://github.com/xojan0120/auth_firebase_test/blob/master/app/helpers/firebase_helper.rb
+# This module was created based on the following URL https://github.com/xojan0120/auth_firebase_test/blob/master/app/helpers/firebase_helper.rb
 
 require 'jwt'
 require 'yaml'
