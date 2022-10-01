@@ -14,12 +14,14 @@ https://github.com/kazumi3858/payreco-frontend
 
 ## 使用技術
 ### バックエンド
-* ruby 3.1.2
 * Rails 7.0.3.1
 
 ### フロントエンド
 * Next.js 12.2.5
 * TypeScript 4.7.4
+
+認証機能はFirebase Authenticationを使用しました。
+フロントエンドのAPI関連のコードはopenAPIコードジェネレーター(orval)を使って自動生成しました。
 
 ## インストール手順
 
