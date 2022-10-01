@@ -14,7 +14,7 @@ module Api
       def create
         return unless authenticate_github_actions_token
 
-        exchange_rate = ExchangeRate.find_or_initialize_by(year_and_month:)
+        exchange_rate = ExchangeRate.find_or_create_by(year_and_month:)
         if exchange_rate.update(year_and_month:, exchange_rate_list: ExchangeRate.data)
           render json: exchange_rate, status: :created
         else
