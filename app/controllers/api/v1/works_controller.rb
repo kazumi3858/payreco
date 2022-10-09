@@ -18,7 +18,6 @@ module Api
       end
 
       def update
-        set_work
         if @work.update(work_params)
           render json: @work
         else
@@ -27,7 +26,6 @@ module Api
       end
 
       def destroy
-        set_work
         @work.destroy
         head :no_content
       end

@@ -4,7 +4,6 @@ module Api
   module V1
     class ExchangeRatesController < ApplicationController
       skip_before_action :authenticate
-      before_action :authenticate_github_actions_token, only: :create
 
       def index
         exchange_rates = ExchangeRate.order(:created_at)
