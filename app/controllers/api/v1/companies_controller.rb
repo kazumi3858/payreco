@@ -18,6 +18,7 @@ module Api
       end
 
       def update
+        set_company
         if @company.update(company_params)
           render json: @company
         else
@@ -26,6 +27,7 @@ module Api
       end
 
       def destroy
+        set_company
         @company.deleted_at = Time.zone.now
         if @company.save
           head :no_content
