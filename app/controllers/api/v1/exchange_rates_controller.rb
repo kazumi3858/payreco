@@ -12,7 +12,7 @@ module Api
       end
 
       def create
-        exchange_rate = ExchangeRate.find_or_initialize_by(year_and_month:)
+        exchange_rate = ExchangeRate.find_or_create_by(year_and_month:)
         if exchange_rate.update(year_and_month:, exchange_rate_list: ExchangeRate.data)
           render json: exchange_rate, status: :created
         else
