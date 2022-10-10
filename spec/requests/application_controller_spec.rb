@@ -4,10 +4,9 @@ require 'rails_helper'
 
 RSpec.describe 'ApplicationController', type: :request do
   describe 'ApplicationController#authenticate' do
-    context 'when authenticate' do
-      # rubocop:disable RSpec/ExampleLength
-      it 'raises invalid token error' do
-        invalid_token = <<~TOKEN
+    context 'when not authenticated' do
+      let(:invalid_token) do
+        <<~TOKEN
           eyJhbGciOiJSUzI1NiIsImtpZCI6IjIxZTZjMGM2YjRlMzA5NTI0N2MwNjgwMDAwZTFiNDMxODIzODZkNTAiLC
           J0eXAiOiJKV1QifQ.eyJuYW1lIjoidGFuYWthIHRhcm8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xld
           XNlcmNvbnRlbnQuY29tL2R1bW15IiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL3BheXJ
@@ -21,12 +20,22 @@ RSpec.describe 'ApplicationController', type: :request do
           pO6qGI0rbsWyAryP6RTy0j2HK4qb35Krlt8HsfHCLXspKMlmVqJYC-rlsh6tPBwwiGzWj6Hu3RJCBE6bbe5zou
           AvV-88am2D8ATJOf1n2_msaBcqhmV3ps1-_DFvRGvGYK6Mg5VfMgHxJz-eR-rdDxFHaiXTAoMf9ZalPkr5LAADTQ
         TOKEN
-
-        expect do
-          get '/api/v1/user', headers: { 'Authorization' => "Bearer #{invalid_token}" }
-        end.to raise_error(RuntimeError, 'Firebase ID token has invalid signature. Not enough or too many segments')
       end
-      # rubocop:enable RSpec/ExampleLength
+      let(:headers) { { 'Authorization' => "Bearer #{invalid_token}" } }
+
+      it 'cannot get information' do
+        expect do
+          get api_v1_user_path, headers:
+        end.to raise_error(RuntimeError,
+                           'Firebase ID token has invalid signature. Not enough or too many segments')
+      end
+
+      it 'cannot post information' do
+        expect do
+          post api_v1_companies_path, params: {}, headers:
+        end.to raise_error(RuntimeError,
+                           'Firebase ID token has invalid signature. Not enough or too many segments')
+      end
     end
   end
 end
