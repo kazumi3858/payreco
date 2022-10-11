@@ -370,14 +370,14 @@ paths:
                   type: integer
                 exchange_rate_list:
                   type: object
-  '/authentications/{user_id}':
+  '/accounts/{user_id}':
     delete:
-      summary: Delete an authentication
-      operationId: delete-authentication
+      summary: Delete an account
+      operationId: delete-account
       responses:
         '204':
           description: No Content
-      description: Delete an authentication
+      description: Delete an account
     parameters:
       - schema:
           type: string

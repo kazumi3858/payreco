@@ -10,11 +10,8 @@ RSpec.describe 'Api::V1::Users', type: :request do
   end
 
   describe 'GET /api/v1/user' do
-    before do
-      get api_v1_user_path
-    end
-
     it 'returns expected status' do
+      get api_v1_user_path
       assert_response_schema_confirm(200)
     end
   end

@@ -15,7 +15,7 @@ module AuthorizationHelper
     allow(ExchangeRate).to receive(:call_api).and_return(EXCHANGE_RATE_JSON)
   end
 
-  def api_token_stub
+  def github_actions_token_stub
     allow_any_instance_of(Api::V1::ExchangeRatesController)
       .to receive(:authenticate_github_actions_token).and_return(true)
   end

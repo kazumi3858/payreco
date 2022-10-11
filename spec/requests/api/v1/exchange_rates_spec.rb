@@ -8,17 +8,11 @@ RSpec.describe 'Api::V1::ExchangeRates', type: :request do
   end
 
   describe 'GET /api/v1/exchange_rates' do
-    before do
-      api_token_stub
+    it 'returns expected response' do
+      github_actions_token_stub
       create_list(:exchange_rate, 2)
       get api_v1_exchange_rates_path
-    end
-
-    it 'returns expected status' do
       assert_response_schema_confirm(200)
-    end
-
-    it 'has expected responses' do
       expect(JSON.parse(response.body).length).to eq(2)
     end
   end
@@ -29,7 +23,7 @@ RSpec.describe 'Api::V1::ExchangeRates', type: :request do
 
       it 'can post' do
         headers = { 'Content-Type' => 'application/json' }
-        api_token_stub
+        github_actions_token_stub
         expect { post api_v1_exchange_rates_path, params:, headers: }.to change(ExchangeRate, :count).by(1)
         expect(response).to have_http_status(:created)
         assert_request_schema_confirm

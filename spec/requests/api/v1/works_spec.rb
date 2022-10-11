@@ -13,16 +13,10 @@ RSpec.describe 'Api::V1::Works', type: :request do
   end
 
   describe 'GET /work' do
-    before do
+    it 'returns expected response' do
       create_list(:work, 10, user_id: current_user.id)
       get api_v1_works_path
-    end
-
-    it 'returns expected status' do
       assert_response_schema_confirm(200)
-    end
-
-    it 'has expected responses' do
       expect(JSON.parse(response.body).length).to eq(10)
     end
   end
