@@ -12,16 +12,10 @@ RSpec.describe 'Api::V1::Companies', type: :request do
   end
 
   describe 'GET /api/v1/companies' do
-    before do
+    it 'returns expected response' do
       create_list(:company, 3, user_id: current_user.id)
       get api_v1_companies_path
-    end
-
-    it 'returns expected status' do
       assert_response_schema_confirm(200)
-    end
-
-    it 'has expected responses' do
       expect(JSON.parse(response.body).length).to eq(3)
     end
   end

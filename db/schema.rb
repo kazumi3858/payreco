@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_01_040333) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_11_023022) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_040333) do
     t.datetime "starting_time"
     t.datetime "ending_time"
     t.integer "break_time"
-    t.float "working_hours", default: 0.0, null: false
+    t.float "working_hours", null: false
     t.float "pay_amount", null: false
     t.string "memo", limit: 50
     t.uuid "user_id", null: false
