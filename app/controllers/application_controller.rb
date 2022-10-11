@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
   before_action :authenticate
-  attr_reader :current_user
+  attr_accessor :current_user
 
   def authenticate
     authenticate_with_http_token do |token, _options|
