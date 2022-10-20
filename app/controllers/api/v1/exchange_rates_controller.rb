@@ -29,7 +29,7 @@ module Api
       end
 
       def year_and_month
-        Time.zone.today.to_s.delete('-').slice(0..5).to_i
+        Time.current.to_s.delete('-').slice(0..5).to_i
       end
     end
   end
