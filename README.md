@@ -15,7 +15,7 @@ https://github.com/kazumi3858/payreco-frontend
 
 ![ログインページの画像](https://user-images.githubusercontent.com/97820517/197375366-cbb67650-3d34-4019-a43b-25b146d4f0b3.png)
 
-![メインページの画像](https://user-images.githubusercontent.com/97820517/197375369-ef4fe3ed-9f6f-49fc-81c4-394a049d8325.png)
+![メインページの画像](https://user-images.githubusercontent.com/97820517/197376901-3b12f875-0d15-4579-a47c-e2ad3a5b2c46.png)
 
 ## 使用技術
 ### バックエンド
