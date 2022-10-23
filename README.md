@@ -13,9 +13,9 @@ https://github.com/kazumi3858/payreco-frontend
 勤務スケジュールを登録することで給料が自動計算されるサービスです。
 特徴は、外貨に対応しており日本円に換算した給料を表示してくれる点です。
 
-![Image](https://user-images.githubusercontent.com/97820517/195332704-67cd5c9c-423f-4dde-ad81-3faf7d63622e.png)
+![ログインページの画像](https://user-images.githubusercontent.com/97820517/197375366-cbb67650-3d34-4019-a43b-25b146d4f0b3.png)
 
-![Image](https://user-images.githubusercontent.com/97820517/195332680-3216afbf-d65d-4da9-95b1-69a1ab78148a.png)
+![メインページの画像](https://user-images.githubusercontent.com/97820517/197375369-ef4fe3ed-9f6f-49fc-81c4-394a049d8325.png)
 
 ## 使用技術
 ### バックエンド
